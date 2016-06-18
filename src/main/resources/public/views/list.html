@@ -7,12 +7,17 @@
             #
         </th>
         <th>
-            Stock
+            STOCK
         </th>
         <th>
-            Date
+            SHARES
         </th>
-        <th>Done</th>
+        <th>
+            MKT VALUE
+        </th>
+        <th>TOTAL COST</th>
+        <th>PROFIT/LOSS</th>
+        <th>%P/L</th>
     </tr>
     <tr class="success-{{todo.done}}" ng-repeat="todo in todos">
         <td>{{$index+1}}</td>
@@ -20,10 +25,19 @@
             {{todo.title}}
         </td>
         <td>
-            {{todo.createdOn |date:'medium'}}
+            
         </td>
         <td>
-            <input type="checkbox" ng-change="todoStatusChanged(todo)" ng-value="todo.done" ng-model="todo.done">
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
         </td>
     </tr>
 </table>
