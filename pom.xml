@@ -6,7 +6,7 @@
 
     <groupId>microinvest</groupId>
     <artifactId>com.jar.microinvest</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
