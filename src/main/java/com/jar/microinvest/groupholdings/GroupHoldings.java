@@ -1,4 +1,4 @@
-package com.jar.microinvest;
+package com.jar.microinvest.groupholdings;
 
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
@@ -8,14 +8,14 @@ import java.util.Date;
 /**
  * Created by shekhargulati on 09/06/14.
  */
-public class Holding {
+public class GroupHoldings {
 
     private String id;
     private String title;
     private boolean done;
     private Date createdOn = new Date();
 
-    public Holding(BasicDBObject dbObject) {
+    public GroupHoldings(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
         this.title = dbObject.getString("title");
         this.done = dbObject.getBoolean("done");

@@ -1,4 +1,4 @@
-package com.jar.microinvest;
+package com.jar.microinvest.holdings;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
@@ -44,7 +44,7 @@ public class HoldingService {
     }
 
     public Holding update(String holdingId, String body) {
-        System.out.println("find");
+        System.out.println("update");
         Holding holding = new Gson().fromJson(body, Holding.class);
         collection.update(new BasicDBObject("_id", new ObjectId(holdingId)), new BasicDBObject("$set", new BasicDBObject("done", holding.isDone())));
         return this.find(holdingId);

@@ -1,6 +1,9 @@
-package com.jar.microinvest;
+package com.jar.microinvest.holdings;
 
-import com.todoapp.JsonTransformer;
+
+
+import com.jar.microinvest.JsonTransformer;
+import spark.Spark;
 
 import static spark.Spark.*;
 
@@ -23,17 +26,17 @@ public class HoldingResource {
             holdingService.createNewHoldings(request.body());
             response.status(201);
             return response;
-        }, new com.todoapp.JsonTransformer());
+        }, new com.jar.microinvest.JsonTransformer());
 
         get(API_CONTEXT + "/holdings/:id", "application/json", (request, response)
 
-                -> holdingService.find(request.params(":id")), new com.todoapp.JsonTransformer());
+                -> holdingService.find(request.params(":id")), new com.jar.microinvest.JsonTransformer());
 
         get(API_CONTEXT + "/holdings", "application/json", (request, response)
 
-                -> holdingService.findAll(), new com.todoapp.JsonTransformer());
+                -> holdingService.findAll(), new com.jar.microinvest.JsonTransformer());
 
-        put(API_CONTEXT + "/holdings/:id", "application/json", (request, response)
+        Spark.put(API_CONTEXT + "/holdings/:id", "application/json", (request, response)
 
                 -> holdingService.update(request.params(":id"), request.body()), new JsonTransformer());
     }
