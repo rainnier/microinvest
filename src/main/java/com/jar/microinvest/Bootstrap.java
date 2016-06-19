@@ -1,8 +1,6 @@
 package com.jar.microinvest;
 
 import com.mongodb.*;
-import com.todoapp.TodoResource;
-import com.todoapp.TodoService;
 
 import static spark.Spark.setIpAddress;
 import static spark.Spark.setPort;
@@ -19,7 +17,7 @@ public class Bootstrap {
         setIpAddress(IP_ADDRESS);
         setPort(PORT);
         staticFileLocation("/public");
-        new TodoResource(new TodoService(mongo()));
+        new HoldingResource(new HoldingService(mongo()));
     }
 
     private static DB mongo() throws Exception {

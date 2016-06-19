@@ -22,6 +22,7 @@ public class HoldingService {
     }
 
     public List<Holding> findAll() {
+        System.out.println("findAll");
         List<Holding> holdings = new ArrayList<>();
         DBCursor dbObjects = collection.find();
         while (dbObjects.hasNext()) {
@@ -32,17 +33,20 @@ public class HoldingService {
     }
 
     public void createNewHoldings(String body) {
+        System.out.println("createNewHoldings");
         Holding holding = new Gson().fromJson(body, Holding.class);
         collection.insert(new BasicDBObject("title", holding.getTitle()).append("done", holding.isDone()).append("createdOn", new Date()));
     }
 
     public Holding find(String id) {
+        System.out.println("find");
         return new Holding((BasicDBObject) collection.findOne(new BasicDBObject("_id", new ObjectId(id))));
     }
 
-    public Holding update(String todoId, String body) {
+    public Holding update(String holdingId, String body) {
+        System.out.println("find");
         Holding holding = new Gson().fromJson(body, Holding.class);
-        collection.update(new BasicDBObject("_id", new ObjectId(todoId)), new BasicDBObject("$set", new BasicDBObject("done", holding.isDone())));
-        return this.find(todoId);
+        collection.update(new BasicDBObject("_id", new ObjectId(holdingId)), new BasicDBObject("$set", new BasicDBObject("done", holding.isDone())));
+        return this.find(holdingId);
     }
 }
