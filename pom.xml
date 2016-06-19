@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>microinvest</groupId>
-    <artifactId>com.jar.microinvest</artifactId>
+    <artifactId>todoapp</artifactId>
     <version>1.1-SNAPSHOT</version>
 
     <properties>
