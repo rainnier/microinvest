@@ -1,4 +1,4 @@
-package com.jar.microinvest.holdings;
+package com.jar.microinvest.holdings; 
 
 
 import com.jar.microinvest.JsonTransformer;
