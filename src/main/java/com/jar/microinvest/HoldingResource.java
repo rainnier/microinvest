@@ -21,15 +21,15 @@ public class HoldingResource {
             holdingService.createNewHoldings(request.body());
             response.status(201);
             return response;
-        }, new com.todoapp.JsonTransformer());
+        }, new JsonTransformer());
 
         get(API_CONTEXT + "/holdings/:id", "application/json", (request, response)
 
-                -> holdingService.find(request.params(":id")), new com.todoapp.JsonTransformer());
+                -> holdingService.find(request.params(":id")), new JsonTransformer());
 
         get(API_CONTEXT + "/holdings", "application/json", (request, response)
 
-                -> holdingService.findAll(), new com.todoapp.JsonTransformer());
+                -> holdingService.findAll(), new JsonTransformer());
 
         put(API_CONTEXT + "/holdings/:id", "application/json", (request, response)
 
