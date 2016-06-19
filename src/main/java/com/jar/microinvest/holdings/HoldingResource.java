@@ -1,6 +1,8 @@
-package com.jar.microinvest;
+package com.jar.microinvest.holdings;
 
-import static spark.Spark.*;
+
+import com.jar.microinvest.JsonTransformer;
+import spark.Spark;
 
 /**
  * Created by shekhargulati on 09/06/14.
@@ -31,7 +33,7 @@ public class HoldingResource {
 
                 -> holdingService.findAll(), new JsonTransformer());
 
-        put(API_CONTEXT + "/holdings/:id", "application/json", (request, response)
+        Spark.put(API_CONTEXT + "/holdings/:id", "application/json", (request, response)
 
                 -> holdingService.update(request.params(":id"), request.body()), new JsonTransformer());
     }
