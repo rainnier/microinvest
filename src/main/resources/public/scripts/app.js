@@ -10,12 +10,30 @@ var app = angular.module('microinvestapp', [
 ]);
 
 app.config(function ($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider.when('/holdings/list', {
         templateUrl: 'views/holdings/list.html',
         controller: 'HoldingsListCtrl'
-    }).when('/create', {
+    }).when('/holdings/create', {
         templateUrl: 'views/holdings/create.html',
         controller: 'HoldingsCreateCtrl'
+    }).when('/gholdings/list', {
+        templateUrl: 'views/groupholdings/list.html',
+        controller: 'GroupHoldingsListCtrl'
+    }).when('/gholdings/create', {
+        templateUrl: 'views/groupholdings/create.html',
+        controller: 'GroupHoldingsCreateCtrl'
+    }).when('/gorder/list', {
+        templateUrl: 'views/grouporder/list.html',
+        controller: 'GroupOrderListCtrl'
+    }).when('/gorder/create', {
+        templateUrl: 'views/grouporder/create.html',
+        controller: 'GroupOrderCreateCtrl'
+    }).when('/orderz/list', {
+        templateUrl: 'views/order/list.html',
+        controller: 'OrderListCtrl'
+    }).when('/orderz/create', {
+        templateUrl: 'views/order/create.html',
+        controller: 'OrderCreateCtrl'
     }).otherwise({
         redirectTo: '/'
     })
@@ -26,11 +44,11 @@ app.controller('HoldingsListCtrl', function ($scope, $http) {
         $scope.todos = data;
     }).error(function (data, status) {
         console.log('Error ' + data)
-    })
+    });
 
-    $scope.todoStatusChanged = function (todo) {
-        console.log(todo);
-        $http.put('/api/v1/holdings/' + todo.id, todo).success(function (data) {
+    $scope.todoStatusChanged = function (holding) {
+        console.log(holding);
+        $http.put('/api/v1/holdings/' + holding.id, holding).success(function (data) {
             console.log('status changed');
         }).error(function (data, status) {
             console.log('Error ' + data)
@@ -45,8 +63,104 @@ app.controller('HoldingsCreateCtrl', function ($scope, $http, $location) {
 
     $scope.createHolding = function () {
         console.log($scope.holding);
-        $http.post('/api/v1/holdings', $scope.todo).success(function (data) {
-            $location.path('/');
+        $http.post('/api/v1/holdings', $scope.holding).success(function (data) {
+            $location.path('/holdings/list');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
+});
+
+app.controller('GroupHoldingsListCtrl', function ($scope, $http) {
+    $http.get('/api/v1/gholdings').success(function (data) {
+        $scope.todos = data;
+    }).error(function (data, status) {
+        console.log('Error ' + data)
+    });
+
+    $scope.todoStatusChanged = function (gholdings) {
+        console.log(gholdings);
+        $http.put('/api/v1/gholdings/' + gholdings.id, gholdings).success(function (data) {
+            console.log('status changed');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
+});
+
+app.controller('GroupHoldingsCreateCtrl', function ($scope, $http, $location) {
+    $scope.gholding = {
+        done: false
+    };
+
+    $scope.createGroupHoldings = function () {
+        console.log($scope.holding);
+        $http.post('/api/v1/gholdings', $scope.gholding).success(function (data) {
+            $location.path('/gholdings/list');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
+});
+
+app.controller('GroupOrderListCtrl', function ($scope, $http) {
+    $http.get('/api/v1/gholdings').success(function (data) {
+        $scope.todos = data;
+    }).error(function (data, status) {
+        console.log('Error ' + data)
+    });
+
+    $scope.todoStatusChanged = function (gholdings) {
+        console.log(gholdings);
+        $http.put('/api/v1/gorder/' + gholdings.id, gholdings).success(function (data) {
+            console.log('status changed');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
+});
+
+app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location) {
+    $scope.gorder = {
+        done: false
+    };
+
+    $scope.createGroupOrder = function () {
+        console.log($scope.gorder);
+        $http.post('/api/v1/gorder', $scope.gorder).success(function (data) {
+            $location.path('/gorder/list');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
+});
+
+app.controller('OrderListCtrl', function ($scope, $http) {
+    $http.get('/api/v1/orderz').success(function (data) {
+        $scope.todos = data;
+    }).error(function (data, status) {
+        console.log('Error ' + data)
+    });
+
+    $scope.todoStatusChanged = function (orderz) {
+        console.log(orderz);
+        $http.put('/api/v1/orderz/' + orderz.id, orderz).success(function (data) {
+            console.log('status changed');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
+});
+
+app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
+    $scope.order = {
+        done: false
+    };
+
+    $scope.createOrder = function () {
+        console.log($scope.gorder);
+        $http.post('/api/v1/orderz', $scope.order).success(function (data) {
+            $location.path('/orderz/list');
         }).error(function (data, status) {
             console.log('Error ' + data)
         })
