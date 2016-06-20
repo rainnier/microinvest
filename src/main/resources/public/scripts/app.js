@@ -158,10 +158,11 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     };
     $scope.trans = {
         type: 'buy',
+        stock: 'MEG',
         cash: '77.00',
-        buying_power: 'PHP 77.00',
+        buyingPower: 'PHP 77.00',
     };
-
+      
     $scope.createOrder = function () {
         console.log($scope.gorder);
         $http.post('/api/v1/orderz', $scope.order).success(function (data) {
