@@ -156,6 +156,9 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.order = {
         done: false
     };
+    $scope.trans = {
+        type: 'buy'
+    };
 
     $scope.createOrder = function () {
         console.log($scope.gorder);
