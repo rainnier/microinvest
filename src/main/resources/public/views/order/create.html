@@ -32,7 +32,7 @@
         <label for="title" class="col-sm-2 control-label">QUANTITY </label>
 
         <div class="col-sm-10" >
-            {{trans.type == 'buy' | iif : trans.total/trans.price/1.005 : trans.total/trans.price/1.01}}
+            {{trans.type == 'buy' ? trans.total/trans.price/1.005 : trans.total/trans.price/1.01}}
         </div>
     </div>
     
