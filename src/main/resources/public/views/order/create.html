@@ -31,10 +31,10 @@
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">QUANTITY </label>
 
-        <div class="col-sm-10" ng-if="trans.type == buy">
+        <div class="col-sm-10" ng-if="trans.type == 'buy'">
             {{trans.total/trans.price/1.005 | number:4}}
         </div>
-        <div class="col-sm-10" ng-if="trans.type == sell">
+        <div class="col-sm-10" ng-if="trans.type == 'sell'">
             <input type="text" class="form-control" id="title" ng-model="trans.quantity">
         </div>
     </div>
@@ -50,10 +50,10 @@
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">TOTAL </label>
 
-        <div class="col-sm-10" ng-if="trans.type == buy">
+        <div class="col-sm-10" ng-if="trans.type == 'buy'">
             <input type="text" class="form-control" id="title" ng-model="trans.total">
         </div>
-        <div class="col-sm-10" ng-if="trans.type == sell">
+        <div class="col-sm-10" ng-if="trans.type == 'sell'">
             {{trans.quantity*trans.price*1.005 | number:4}}
         </div>
     </div>
