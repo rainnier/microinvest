@@ -14,7 +14,7 @@
                 BUY
             </label>
             <label class="sideSell">
-                <input type="radio" ng-model="trans.type" ng-value="sell">
+                <input type="radio" ng-model="trans.type" value="sell">
                 SELL
             </label><br/>
         </div>
@@ -31,8 +31,11 @@
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">QUANTITY </label>
 
-        <div class="col-sm-10" >
-            {{trans.type == 'buy' ? trans.total/trans.price/1.005 : trans.total/trans.price/1.01 | number:4}}
+        <div class="col-sm-10" ng-if="trans.type == buy">
+            {{trans.total/trans.price/1.005 | number:4}}
+        </div>
+        <div class="col-sm-10" ng-if="trans.type == sell">
+            <input type="text" class="form-control" id="title" ng-model="trans.quantity">
         </div>
     </div>
     
@@ -47,8 +50,11 @@
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">TOTAL </label>
 
-        <div class="col-sm-10" >
+        <div class="col-sm-10" ng-if="trans.type == buy">
             <input type="text" class="form-control" id="title" ng-model="trans.total">
+        </div>
+        <div class="col-sm-10" ng-if="trans.type == sell">
+            {{trans.quantity*trans.price*1.005 | number:4}}
         </div>
     </div>
     
