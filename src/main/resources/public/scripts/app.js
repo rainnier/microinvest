@@ -157,7 +157,9 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         done: false
     };
     $scope.trans = {
-        type: 'buy'
+        type: 'buy',
+        cash: '77.00',
+        buying_power: 'PHP 77.00',
     };
 
     $scope.createOrder = function () {
