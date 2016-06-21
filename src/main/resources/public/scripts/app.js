@@ -141,6 +141,14 @@ app.controller('OrderListCtrl', function ($scope, $http) {
     }).error(function (data, status) {
         console.log('Error ' + data)
     });
+    
+    $scope.$watch('trans.type', function(value) {
+        if (value == 'buy') {
+            $scope.trans.quantity = $scope.trans.total/$scope.trans.price/1.005 | number:4;
+        } else if (value == 'sell') {
+            $scope.trans.total = $scope.trans.quantity*$scope.trans.price*1.005 | number:4;
+        }
+    });
 
     $scope.todoStatusChanged = function (orderz) {
         console.log(orderz);
