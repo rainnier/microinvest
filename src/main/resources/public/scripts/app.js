@@ -166,12 +166,12 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         buyingPower: '77.00'
     };
     
-    $scope.$watch('trans.total', function(v) {
-        $scope.trans.quantity = $filter('number')(v/$scope.trans.price/1.005, 4);
+    $scope.$watch('trans.total', function(newVal, oldVal) {
+        $scope.trans.quantity = $filter('number')(newVal/$scope.trans.price/1.005, 4);
     });
     
-    $scope.$watch('trans.quantity', function(v) {
-        $scope.trans.total = $filter('number')(v*$scope.trans.price*1.005, 4);
+    $scope.$watch('trans.quantity', function(newVal, oldVal) {
+        $scope.trans.total = $filter('number')(newVal*$scope.trans.price*1.005, 4);
     });
     
     $scope.createOrder = function () {
