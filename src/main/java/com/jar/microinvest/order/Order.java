@@ -15,6 +15,7 @@ public class Order {
     private boolean done;
     private Date createdOn = new Date();
     
+    private String type;
     private long quantity;
     private long price;
     private long total;
@@ -24,12 +25,29 @@ public class Order {
         this.title = dbObject.getString("title");
         this.done = dbObject.getBoolean("done");
         this.createdOn = dbObject.getDate("createdOn");
+        this.type = dbObject.getString("type");
         this.quantity = dbObject.getLong("quantity");
         this.price = dbObject.getLong("price");
         this.total = dbObject.getLong("total");
     }
 
     public String getTitle() {
+        return title;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    
+    public Long getQuantity() {
+        return title;
+    }
+    
+    public Long getPrice() {
+        return title;
+    }
+    
+    public Long getTotal() {
         return title;
     }
 

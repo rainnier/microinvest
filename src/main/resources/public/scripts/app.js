@@ -154,9 +154,7 @@ app.controller('OrderListCtrl', function ($scope, $http) {
 
 app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.order = {
-        done: false
-    };
-    $scope.trans = {
+        done: false,
         type: 'buy',
         stock: 'MEG',
         price: '4.53',
@@ -166,21 +164,21 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         buyingPower: '77.00'
     };
     
-    $scope.$watch('trans.total', function(newVal, oldVal) {
-        if($scope.trans.type == 'buy') {
-            $scope.trans.quantity = newVal/$scope.trans.price/1.005;
+    $scope.$watch('order.total', function(newVal, oldVal) {
+        if($scope.order.type == 'buy') {
+            $scope.order.quantity = newVal/$scope.order.price/1.005;
         }
     });
     
-    $scope.$watch('trans.quantity', function(newVal, oldVal) {
-        if($scope.trans.type == 'sell') {
-            $scope.trans.total = newVal*$scope.trans.price*0.99;
+    $scope.$watch('order.quantity', function(newVal, oldVal) {
+        if($scope.order.type == 'sell') {
+            $scope.order.total = newVal*$scope.order.price*0.99;
         }
     });
     
     $scope.changeTransType = function (type) {
-        $scope.trans.quantity = '';
-        $scope.trans.total = '';
+        $scope.order.quantity = '';
+        $scope.order.total = '';
     }
     
     $scope.createOrder = function () {

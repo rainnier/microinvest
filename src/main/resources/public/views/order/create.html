@@ -10,29 +10,28 @@
     <div class="form-group">
         <div class="col-sm-10" >
             <label class="sideBuy">
-                <input type="radio" ng-model="trans.type" ng-change="changeTransType('buy')" value="buy" > 
+                <input type="radio" ng-model="order.type" ng-change="changeTransType('buy')" value="buy" > 
                 BUY
             </label>
             <label class="sideSell">
-                <input type="radio" ng-model="trans.type" ng-change="changeTransType('sell')" value="sell" >
+                <input type="radio" ng-model="order.type" ng-change="changeTransType('sell')" value="sell" >
                 SELL
             </label><br/>
         </div>
-        {{trans.type}}
     </div>
     
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">STOCK </label>
 
         <div class="col-sm-10" >
-            <input type="text" class="form-control" id="title" ng-model="trans.stock">
+            <input type="text" class="form-control" id="title" ng-model="order.stock">
         </div>
     </div>
     
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">QUANTITY </label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" ng-model="trans.quantity" ng-readonly="trans.type == 'buy'">
+            <input type="text" class="form-control" id="title" ng-model="order.quantity" ng-readonly="order.type == 'buy'">
         </div>
     </div>
     
@@ -40,7 +39,7 @@
         <label for="title" class="col-sm-2 control-label">PRICE </label>
 
         <div class="col-sm-10" >
-            <input type="text" class="form-control" id="title" ng-model="trans.price" ng-readonly="true">
+            <input type="text" class="form-control" id="title" ng-model="order.price" ng-readonly="true">
         </div>
     </div>
     
@@ -48,7 +47,7 @@
         <label for="title" class="col-sm-2 control-label">TOTAL </label>
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" ng-model="trans.total" ng-readonly="trans.type == 'sell'">
+            <input type="text" class="form-control" id="title" ng-model="order.total" ng-readonly="order.type == 'sell'">
         </div>
     </div>
     
@@ -56,14 +55,14 @@
         <label for="title" class="col-sm-2 control-label">CASH </label>
 
         <div class="col-sm-10" >
-            {{trans.cash}}
+            {{order.cash}}
         </div>
     </div>
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">BUYING POWER </label>
 
         <div class="col-sm-10" >
-            {{trans.buyingPower}}
+            {{order.buyingPower}}
         </div>
     </div>
     
