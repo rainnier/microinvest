@@ -137,19 +137,11 @@ app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location) {
 
 app.controller('OrderListCtrl', function ($scope, $http) {
     $http.get('/api/v1/orderz').success(function (data) {
-        $scope.todos = data;
+        $scope.orders = data;
     }).error(function (data, status) {
         console.log('Error ' + data)
     });
     
-    $scope.$watch('trans.type', function(value) {
-        if (value == 'buy') {
-            $scope.trans.quantity = $scope.trans.total/$scope.trans.price/1.005 | number:4;
-        } else if (value == 'sell') {
-            $scope.trans.total = $scope.trans.quantity*$scope.trans.price*1.005 | number:4;
-        }
-    });
-
     $scope.todoStatusChanged = function (orderz) {
         console.log(orderz);
         $http.put('/api/v1/orderz/' + orderz.id, orderz).success(function (data) {
@@ -171,8 +163,15 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         buyingPower: '77.00'
     };
     
+    $scope.changeTransType = function (transType) {
+        if (transType == 'buy') {
+            $scope.trans.quantity = $scope.trans.total/$scope.trans.price/1.005 | number:4;
+        } else if (transType == 'sell') {
+            $scope.trans.total = $scope.trans.quantity*$scope.trans.price*1.005 | number:4;
+        }
+    });
+    
     $scope.createOrder = function () {
-        console.log($scope.gorder);
         $http.post('/api/v1/orderz', $scope.order).success(function (data) {
             $location.path('/orderz/list');
         }).error(function (data, status) {

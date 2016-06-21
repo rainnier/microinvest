@@ -14,12 +14,19 @@ public class Order {
     private String title;
     private boolean done;
     private Date createdOn = new Date();
+    
+    private long quantity;
+    private long price;
+    private long total;
 
     public Order(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
         this.title = dbObject.getString("title");
         this.done = dbObject.getBoolean("done");
         this.createdOn = dbObject.getDate("createdOn");
+        this.quantity = dbObject.getLong("quantity");
+        this.price = dbObject.getLong("price");
+        this.total = dbObject.getLong("total");
     }
 
     public String getTitle() {

@@ -10,11 +10,11 @@
     <div class="form-group">
         <div class="col-sm-10" >
             <label class="sideBuy">
-                <input type="radio" ng-model="trans.type" value="buy"> 
+                <input type="radio" ng-model="trans.type" ng-change="changeTransType('buy')" value="buy" > 
                 BUY
             </label>
             <label class="sideSell">
-                <input type="radio" ng-model="trans.type" value="sell">
+                <input type="radio" ng-model="trans.type" ng-change="changeTransType('sell')" value="sell" >
                 SELL
             </label><br/>
         </div>
@@ -32,7 +32,7 @@
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">QUANTITY </label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" ng-model="trans.quantity">
+            <input type="text" class="form-control" id="title" ng-model="trans.quantity" ng-readonly="trans.type == 'buy'">
         </div>
     </div>
     
@@ -48,7 +48,7 @@
         <label for="title" class="col-sm-2 control-label">TOTAL </label>
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" ng-model="trans.total">
+            <input type="text" class="form-control" id="title" ng-model="trans.total" ng-readonly="trans.type == 'sell'">
         </div>
     </div>
     
