@@ -161,6 +161,8 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         stock: 'MEG',
         price: '4.53',
         cash: '77.00',
+        quantity: '0',
+        total: '0',
         buyingPower: '77.00'
     };
     
