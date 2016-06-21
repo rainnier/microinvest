@@ -30,7 +30,7 @@ public class Bootstrap {
         System.out.println("/public");
         new HoldingResource(new HoldingService(mongo()));
 //        new GroupHoldingsResource(new GroupHoldingsService(mongo()));
-//        new OrderResource(new OrderService(mongo()));
+        new OrderResource(new OrderService(mongo())); 
 //        new GroupOrderResource(new GroupOrderService(mongo()));
         enableDebugScreen();
     }
