@@ -12,7 +12,7 @@ import java.util.Date;
 public class Order {
 
     private String id;
-    private String title;
+    private String stock;
     private boolean done;
     private Date createdOn = new Date();
     
@@ -23,7 +23,7 @@ public class Order {
 
     public Order(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
-        this.title = dbObject.getString("title");
+        this.stock = dbObject.getString("stock");        
         this.done = dbObject.getBoolean("done");
         this.createdOn = dbObject.getDate("createdOn");
         this.type = dbObject.getString("type");
@@ -48,10 +48,7 @@ public class Order {
 
     }
 
-    public String getTitle() {
-        return title;
-    }
-    
+
     public String getType() {
         return type;
     }
@@ -74,5 +71,13 @@ public class Order {
 
     public Date getCreatedOn() {
         return createdOn;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 }
