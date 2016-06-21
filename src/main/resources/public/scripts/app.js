@@ -159,7 +159,7 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.trans = {
         type: 'buy',
         stock: 'MEG',
-        prict: 4.53,
+        price: 4.53,
         cash: '77.00',
         buyingPower: '77.00'
     };
