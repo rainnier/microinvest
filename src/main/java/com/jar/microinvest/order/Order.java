@@ -13,27 +13,60 @@ public class Order {
 
     private String id;
     private String stock;
-    private BigDecimal amount;
-    private String transactionType; //ALWAYS BUY if from order Always sell if from Holdings
     private boolean done;
     private Date createdOn = new Date();
+    
+    private String type;
+    private BigDecimal quantity;
+    private BigDecimal price;
+    private BigDecimal total;
 
     public Order(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
-        this.stock = dbObject.getString("stock");
-        if(dbObject.getString("amount")!=null){
-            try {
-                this.amount = new BigDecimal(dbObject.getString("amount"));
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        } else {
-            this.amount = BigDecimal.ZERO;
-        }
-
-        this.transactionType = dbObject.getString("transactionType");
+        this.stock = dbObject.getString("stock");        
         this.done = dbObject.getBoolean("done");
         this.createdOn = dbObject.getDate("createdOn");
+        this.type = dbObject.getString("type");
+        this.quantity = this.getBigDecimalVersion(dbObject.getString("quantity"));
+        this.price = this.getBigDecimalVersion(dbObject.getString("price"));
+        this.total = this.getBigDecimalVersion(dbObject.getString("total"));
+    }
+
+    public BigDecimal getBigDecimalVersion(String bdString){
+        if(bdString!=null){
+            try {
+                BigDecimal tmp =  new BigDecimal(bdString);
+                return tmp;
+            } catch (Exception e){
+                e.printStackTrace();
+                return BigDecimal.ZERO;
+            }
+        } else {
+            return BigDecimal.ZERO;
+        }
+
+
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+    
+    public BigDecimal getPrice() {
+        return price;
+    }
+    
+    public BigDecimal getTotal() {
+        return total;
     }
 
     public boolean isDone() {
@@ -50,21 +83,5 @@ public class Order {
 
     public void setStock(String stock) {
         this.stock = stock;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
     }
 }

@@ -10,34 +10,34 @@
             STOCK
         </th>
         <th>
-            SHARES
+            TRANSACTION TYPE
         </th>
         <th>
-            MKT VALUE
+            QUANTITY
         </th>
-        <th>TOTAL COST</th>
-        <th>PROFIT/LOSS</th>
-        <th>%P/L</th>
+        <th>
+            PRICE
+        </th>
+        <th>
+            TOTAL COST
+        </th>
     </tr>
-    <tr class="success-{{todo.done}}" ng-repeat="todo in todos">
+    <tr class="success-{{tran.done}}" ng-repeat="tran in trans">
         <td>{{$index+1}}</td>
         <td>
-            {{todo.title}}
+            {{tran.stock}}
         </td>
         <td>
-             
+            {{tran.type}}
         </td>
         <td>
-            
+            {{tran.quantity}}
         </td>
         <td>
-            
+            {{tran.price}}
         </td>
         <td>
-            
-        </td>
-        <td>
-            
+            {{tran.total}}
         </td>
     </tr>
 </table>

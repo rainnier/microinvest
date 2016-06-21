@@ -140,11 +140,11 @@ app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location) {
 
 app.controller('OrderListCtrl', function ($scope, $http) {
     $http.get('/api/v1/orderz').success(function (data) {
-        $scope.todos = data;
+        $scope.trans = data;
     }).error(function (data, status) {
         console.log('Error ' + data)
     });
-
+    
     $scope.todoStatusChanged = function (orderz) {
         console.log(orderz);
         $http.put('/api/v1/orderz/' + orderz.id, orderz).success(function (data) {
@@ -157,6 +157,7 @@ app.controller('OrderListCtrl', function ($scope, $http) {
 
 app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.order = {
+<<<<<<< HEAD
         done: false
     };
 
@@ -170,9 +171,43 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.createOrder = function () {
         console.log($scope.trans);
         $http.post('/api/v1/orderz', $scope.trans).success(function (data) {
+=======
+        done: false,
+        type: 'buy',
+        stock: 'MEG',
+        price: '4.53',
+        cash: '77.00',
+        quantity: '',
+        total: '',
+        buyingPower: '77.00'
+    };
+    
+    $scope.$watch('order.total', function(newVal, oldVal) {
+        if($scope.order.type == 'buy') {
+            $scope.order.quantity = newVal/$scope.order.price/1.005;
+        }
+    });
+    
+    $scope.$watch('order.quantity', function(newVal, oldVal) {
+        if($scope.order.type == 'sell') {
+            $scope.order.total = newVal*$scope.order.price*0.99;
+        }
+    });
+    
+    $scope.changeTransType = function (type) {
+        $scope.order.quantity = '';
+        $scope.order.total = '';
+    }
+    
+    $scope.createOrder = function () {
+        alert($scope.order);
+        console.log($scope.order);
+        $http.post('/api/v1/orderz', $scope.order).success(function (data) {
+>>>>>>> refs/remotes/origin/master
             $location.path('/orderz/list');
         }).error(function (data, status) {
             console.log('Error ' + data)
+            alert('Error ' + data);
         })
     }
 });
