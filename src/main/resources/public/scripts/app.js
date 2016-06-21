@@ -182,11 +182,13 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     }
     
     $scope.createOrder = function () {
+        alert($scope.order);
         console.log($scope.order);
         $http.post('/api/v1/orderz', $scope.order).success(function (data) {
             $location.path('/orderz/list');
         }).error(function (data, status) {
             console.log('Error ' + data)
+            alert('Error ' + data);
         })
     }
 });
