@@ -40,15 +40,15 @@ public class Order {
     }
     
     public Long getQuantity() {
-        return title;
+        return quantity;
     }
     
     public Long getPrice() {
-        return title;
+        return price;
     }
     
     public Long getTotal() {
-        return title;
+        return total;
     }
 
     public boolean isDone() {
