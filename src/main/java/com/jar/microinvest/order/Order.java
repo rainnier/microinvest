@@ -48,7 +48,7 @@ public class Order {
 
     }
 
-    
+
     public String getType() {
         return type;
     }

@@ -157,22 +157,10 @@ app.controller('OrderListCtrl', function ($scope, $http) {
 
 app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.order = {
-<<<<<<< HEAD
         done: false
     };
 
     $scope.trans = {
-        //type: 'buy',
-        //stock: 'MEG',
-        //cash: '77.00',
-        //buyingPower: '77.00'
-    };
-
-    $scope.createOrder = function () {
-        console.log($scope.trans);
-        $http.post('/api/v1/orderz', $scope.trans).success(function (data) {
-=======
-        done: false,
         type: 'buy',
         stock: 'MEG',
         price: '4.53',
@@ -197,16 +185,15 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.changeTransType = function (type) {
         $scope.order.quantity = '';
         $scope.order.total = '';
-    }
+    };
     
     $scope.createOrder = function () {
         alert($scope.order);
         console.log($scope.order);
         $http.post('/api/v1/orderz', $scope.order).success(function (data) {
->>>>>>> refs/remotes/origin/master
             $location.path('/orderz/list');
         }).error(function (data, status) {
-            console.log('Error ' + data)
+            console.log('Error ' + data);
             alert('Error ' + data);
         })
     }
