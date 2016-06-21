@@ -163,13 +163,13 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         buyingPower: '77.00'
     };
     
-    $scope.changeTransType = function (transType) {
-        if (transType == 'buy') {
-            $scope.trans.quantity = $filter('number')($scope.trans.total/$scope.trans.price/1.005, 4);
-        } else if (transType == 'sell') {
-            $scope.trans.total = $filter('number')($scope.trans.quantity*$scope.trans.price*1.005, 4);
-        }
-    };
+    $scope.$watch('trans.total', function(v) {
+        $scope.trans.quantity = $filter('number')(v/$scope.trans.price/1.005, 4);
+    });
+    
+    $scope.$watch('trans.quantity', function(v) {
+        $scope.trans.total = $filter('number')(v*$scope.trans.price*1.005, 4);
+    });
     
     $scope.createOrder = function () {
         console.log($scope.order);
