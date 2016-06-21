@@ -10,7 +10,10 @@ var app = angular.module('microinvestapp', [
 ]);
 
 app.config(function ($routeProvider) {
-    $routeProvider.when('/holdings/list', {
+    $routeProvider.when('/', {
+        templateUrl: 'views/order/list.html',
+        controller: 'OrderListCtrl'
+    }).when('/holdings/list', {
         templateUrl: 'views/holdings/list.html',
         controller: 'HoldingsListCtrl'
     }).when('/holdings/create', {
@@ -156,16 +159,17 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.order = {
         done: false
     };
+
     $scope.trans = {
-        type: 'buy',
-        stock: 'MEG',
-        cash: '77.00',
-        buyingPower: '77.00'
+        //type: 'buy',
+        //stock: 'MEG',
+        //cash: '77.00',
+        //buyingPower: '77.00'
     };
-    
+
     $scope.createOrder = function () {
-        console.log($scope.gorder);
-        $http.post('/api/v1/orderz', $scope.order).success(function (data) {
+        console.log($scope.trans);
+        $http.post('/api/v1/orderz', $scope.trans).success(function (data) {
             $location.path('/orderz/list');
         }).error(function (data, status) {
             console.log('Error ' + data)

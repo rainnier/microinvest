@@ -23,19 +23,22 @@ public class OrderService {
 
     public List<Order> findAll() {
         System.out.println("findAll");
-        List<Order> holdings = new ArrayList<>();
+        List<Order> orderz = new ArrayList<>();
         DBCursor dbObjects = collection.find();
         while (dbObjects.hasNext()) {
             DBObject dbObject = dbObjects.next();
-            holdings.add(new Order((BasicDBObject) dbObject));
+            orderz.add(new Order((BasicDBObject) dbObject));
         }
-        return holdings;
+        System.out.println(orderz);
+        return orderz;
     }
 
     public void createNewOrder(String body) {
         System.out.println("createNewOrder");
         Order order = new Gson().fromJson(body, Order.class);
-        collection.insert(new BasicDBObject("title", order.getTitle()).append("done", order.isDone()).append("createdOn", new Date()));
+        collection.insert(new BasicDBObject("stock", order.getStock()).append("done", order.isDone()).append("createdOn", new Date())
+                .append("amount", order.getAmount().toPlainString()) .append("transactionType", "BUY")
+        );
     }
 
     public Order find(String id) {
