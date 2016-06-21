@@ -1,7 +1,6 @@
 package com.jar.microinvest.grouporder;
 
 import com.google.gson.Gson;
-import com.jar.microinvest.holdings.Holding;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
@@ -22,15 +21,15 @@ public class GroupOrderService {
         this.collection = db.getCollection("groupOrder");
     }
 
-    public List<Holding> findAll() {
+    public List<GroupOrder> findAll() {
         System.out.println("findAll");
-        List<Holding> holdings = new ArrayList<>();
+        List<GroupOrder> groupOrders = new ArrayList<>();
         DBCursor dbObjects = collection.find();
         while (dbObjects.hasNext()) {
             DBObject dbObject = dbObjects.next();
-            holdings.add(new Holding((BasicDBObject) dbObject));
+            groupOrders.add(new GroupOrder((BasicDBObject) dbObject));
         }
-        return holdings;
+        return groupOrders;
     }
 
     public void createNewGroupOrder(String body) {
@@ -46,8 +45,8 @@ public class GroupOrderService {
 
     public GroupOrder update(String groupOrderId, String body) {
         System.out.println("update");
-        GroupOrder holding = new Gson().fromJson(body, GroupOrder.class);
-        collection.update(new BasicDBObject("_id", new ObjectId(groupOrderId)), new BasicDBObject("$set", new BasicDBObject("done", holding.isDone())));
+        GroupOrder groupOrder = new Gson().fromJson(body, GroupOrder.class);
+        collection.update(new BasicDBObject("_id", new ObjectId(groupOrderId)), new BasicDBObject("$set", new BasicDBObject("done", groupOrder.isDone())));
         return this.find(groupOrderId);
     }
 }
