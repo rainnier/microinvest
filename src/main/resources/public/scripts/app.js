@@ -161,8 +161,8 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         stock: 'MEG',
         price: '4.53',
         cash: '77.00',
-        quantity: '0',
-        total: '0',
+        quantity: '',
+        total: '',
         buyingPower: '77.00'
     };
     
@@ -177,6 +177,11 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
             $scope.trans.total = newVal*$scope.trans.price*1.005;
         }
     });
+    
+    $scope.changeTransType = function (type) {
+        $scope.trans.quantity = '';
+        $scope.trans.total = '';
+    }
     
     $scope.createOrder = function () {
         console.log($scope.order);
