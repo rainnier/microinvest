@@ -36,7 +36,8 @@ public class OrderService {
         System.out.println("createNewOrder");
         Order order = new Gson().fromJson(body, Order.class);
         collection.insert(new BasicDBObject("title", order.getTitle())
-            .append("quantity", order.getQuantity()).append("price", order.getPrice()).append("total", getTotal())
+            .append("type", order.getQuantity()).append("type", order.getQuantity())
+            .append("price", order.getPrice()).append("total", order.getTotal())
             .append("done", order.isDone()).append("createdOn", new Date()));
     }
 
