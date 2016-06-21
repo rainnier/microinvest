@@ -3,6 +3,7 @@ package com.jar.microinvest.order;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -16,9 +17,9 @@ public class Order {
     private Date createdOn = new Date();
     
     private String type;
-    private long quantity;
-    private long price;
-    private long total;
+    private BigDecimal quantity;
+    private BigDecimal price;
+    private BigDecimal total;
 
     public Order(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
@@ -26,9 +27,25 @@ public class Order {
         this.done = dbObject.getBoolean("done");
         this.createdOn = dbObject.getDate("createdOn");
         this.type = dbObject.getString("type");
-        this.quantity = dbObject.getLong("quantity");
-        this.price = dbObject.getLong("price");
-        this.total = dbObject.getLong("total");
+        this.quantity = this.getBigDecimalVersion(dbObject.getString("quantity"));
+        this.price = this.getBigDecimalVersion(dbObject.getString("price"));
+        this.total = this.getBigDecimalVersion(dbObject.getString("total"));
+    }
+
+    public BigDecimal getBigDecimalVersion(String bdString){
+        if(bdString!=null){
+            try {
+                BigDecimal tmp =  new BigDecimal(bdString);
+                return tmp;
+            } catch (Exception e){
+                e.printStackTrace();
+                return BigDecimal.ZERO;
+            }
+        } else {
+            return BigDecimal.ZERO;
+        }
+
+
     }
 
     public String getTitle() {
@@ -39,15 +56,15 @@ public class Order {
         return type;
     }
     
-    public Long getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
     
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
     
-    public Long getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 

@@ -2,16 +2,13 @@ package com.jar.microinvest;
 
 import com.jar.microinvest.holdings.HoldingResource;
 import com.jar.microinvest.holdings.HoldingService;
-
 import com.jar.microinvest.order.OrderResource;
 import com.jar.microinvest.order.OrderService;
-
 import com.mongodb.*;
 
 import static spark.Spark.setIpAddress;
 import static spark.Spark.setPort;
 import static spark.SparkBase.staticFileLocation;
-import static spark.debug.DebugScreen.enableDebugScreen;
 
 /**
  * Created by shekhargulati on 09/06/14.
@@ -30,9 +27,9 @@ public class Bootstrap {
         System.out.println("/public");
         new HoldingResource(new HoldingService(mongo()));
 //        new GroupHoldingsResource(new GroupHoldingsService(mongo()));
-//        new OrderResource(new OrderService(mongo()));
+        new OrderResource(new OrderService(mongo()));
 //        new GroupOrderResource(new GroupOrderService(mongo()));
-        enableDebugScreen();
+//        enableDebugScreen();
     }
 
     private static DB mongo() throws Exception {

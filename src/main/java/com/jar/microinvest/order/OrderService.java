@@ -33,11 +33,13 @@ public class OrderService {
     }
 
     public void createNewOrder(String body) {
+
         System.out.println("createNewOrder");
+        System.out.println(body);
         Order order = new Gson().fromJson(body, Order.class);
         collection.insert(new BasicDBObject("title", order.getType())
-            .append("type", order.getType()).append("quantity", order.getQuantity())
-            .append("price", order.getPrice()).append("total", order.getTotal())
+            .append("type", order.getType()).append("quantity", order.getQuantity().toPlainString())
+            .append("price", order.getPrice().toPlainString()).append("total", order.getTotal().toPlainString())
             .append("done", order.isDone()).append("createdOn", new Date()));
     }
 
