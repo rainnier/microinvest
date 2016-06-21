@@ -165,13 +165,14 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     
     $scope.changeTransType = function (transType) {
         if (transType == 'buy') {
-            $scope.trans.quantity = $scope.trans.total/$scope.trans.price/1.005 | number:4;
+            $scope.trans.quantity = $filter('number')($scope.trans.total/$scope.trans.price/1.005, 4);
         } else if (transType == 'sell') {
-            $scope.trans.total = $scope.trans.quantity*$scope.trans.price*1.005 | number:4;
+            $scope.trans.total = $filter('number')($scope.trans.quantity*$scope.trans.price*1.005, 4);
         }
-    });
+    };
     
     $scope.createOrder = function () {
+        console.log($scope.order);
         $http.post('/api/v1/orderz', $scope.order).success(function (data) {
             $location.path('/orderz/list');
         }).error(function (data, status) {
