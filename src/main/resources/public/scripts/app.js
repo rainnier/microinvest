@@ -137,7 +137,7 @@ app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location) {
 
 app.controller('OrderListCtrl', function ($scope, $http) {
     $http.get('/api/v1/orderz').success(function (data) {
-        $scope.orders = data;
+        $scope.trans = data;
     }).error(function (data, status) {
         console.log('Error ' + data)
     });
