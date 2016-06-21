@@ -32,7 +32,7 @@ public class Bootstrap {
 //        new GroupHoldingsResource(new GroupHoldingsService(mongo()));
         new OrderResource(new OrderService(mongo())); 
 //        new GroupOrderResource(new GroupOrderService(mongo()));
-        enableDebugScreen();
+//        enableDebugScreen();
     }
 
     private static DB mongo() throws Exception {
