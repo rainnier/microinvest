@@ -174,7 +174,7 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     
     $scope.$watch('trans.quantity', function(newVal, oldVal) {
         if($scope.trans.type == 'sell') {
-            $scope.trans.total = newVal*$scope.trans.price*1.005;
+            $scope.trans.total = newVal*$scope.trans.price*0.99;
         }
     });
     
