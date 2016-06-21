@@ -2,6 +2,10 @@ package com.jar.microinvest;
 
 import com.jar.microinvest.holdings.HoldingResource;
 import com.jar.microinvest.holdings.HoldingService;
+
+import com.jar.microinvest.order.OrderResource;
+import com.jar.microinvest.order.OrderService;
+
 import com.mongodb.*;
 
 import static spark.Spark.setIpAddress;
