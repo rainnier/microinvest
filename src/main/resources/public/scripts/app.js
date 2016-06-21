@@ -167,11 +167,15 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     };
     
     $scope.$watch('trans.total', function(newVal, oldVal) {
-        $scope.trans.quantity = newVal/$scope.trans.price/1.005;
+        if($scope.trans.type == 'buy') {
+            $scope.trans.quantity = newVal/$scope.trans.price/1.005;
+        }
     });
     
     $scope.$watch('trans.quantity', function(newVal, oldVal) {
-        $scope.trans.total = newVal*$scope.trans.price*1.005;
+        if($scope.trans.type == 'sell') {
+            $scope.trans.total = newVal*$scope.trans.price*1.005;
+        }
     });
     
     $scope.createOrder = function () {
