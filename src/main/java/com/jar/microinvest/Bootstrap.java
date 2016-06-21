@@ -20,6 +20,7 @@ public class Bootstrap {
         setPort(PORT);
         staticFileLocation("/public");
         new HoldingResource(new HoldingService(mongo()));
+        new OrderResource(new OrderService(mongo()));
     }
 
     private static DB mongo() throws Exception {
