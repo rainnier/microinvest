@@ -48,10 +48,6 @@ public class Order {
 
     }
 
-
-    public String getTitle() {
-        return title;
-    }
     
     public String getType() {
         return type;
