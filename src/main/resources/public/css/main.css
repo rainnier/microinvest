@@ -1,3 +1,19 @@
 .success-true{
     text-decoration: line-through;
 }
+
+.sideBuy {
+    color: #6EBB1F;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.sideSell {
+    color: #F36523;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cellupperline {
+    border-top: 1px solid #CCC;
+}
