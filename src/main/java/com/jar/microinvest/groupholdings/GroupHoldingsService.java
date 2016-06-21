@@ -1,7 +1,6 @@
 package com.jar.microinvest.groupholdings;
 
 import com.google.gson.Gson;
-import com.jar.microinvest.holdings.Holding;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
@@ -22,13 +21,13 @@ public class GroupHoldingsService {
         this.collection = db.getCollection("groupholdings");
     }
 
-    public List<Holding> findAll() {
+    public List<GroupHoldings> findAll() {
         System.out.println("findAll");
-        List<Holding> holdings = new ArrayList<>();
+        List<GroupHoldings> holdings = new ArrayList<>();
         DBCursor dbObjects = collection.find();
         while (dbObjects.hasNext()) {
             DBObject dbObject = dbObjects.next();
-            holdings.add(new Holding((BasicDBObject) dbObject));
+            holdings.add(new GroupHoldings((BasicDBObject) dbObject));
         }
         return holdings;
     }
