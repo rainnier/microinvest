@@ -201,7 +201,7 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
 
 app.controller('UserListCtrl', function ($scope, $http) {
     $http.get('/api/v1/user').success(function (data) {
-        $scope.todos = data;
+        $scope.users = data;
     }).error(function (data, status) {
         console.log('Error ' + data)
     });

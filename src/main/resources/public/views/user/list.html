@@ -40,25 +40,25 @@
 		</th>
         
     </tr>
-    <tr class="success-{{todo.done}}" ng-repeat="todo in todos">
+    <tr class="success-{{user.done}}" ng-repeat="user in users">
         <td>{{$index+1}}</td>
         <td>
-            {{todo.username}}
+            {{user.username}}
         </td>
         <td>
-            {{todo.firstName}} 
+            {{user.firstName}}
         </td>
         <td>
-            {{todo.lastName}} 
+            {{user.lastName}}
         </td>
         <td>
-            {{todo.middleName}} 
+            {{user.middleName}}
         </td>
         <td>
-            {{todo.contactNumber}}
+            {{user.contactNumber}}
         </td>
         <td>
-            {{todo.email}}
+            {{user.email}}
         </td>
     </tr>
 </table>
