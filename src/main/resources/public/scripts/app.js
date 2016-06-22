@@ -34,6 +34,12 @@ app.config(function ($routeProvider) {
     }).when('/orderz/create', {
         templateUrl: 'views/order/create.html',
         controller: 'OrderCreateCtrl'
+    }).when('/user/list', {
+        templateUrl: 'views/user/list.html',
+        controller: 'UserListCtrl'
+    }).when('/user/create', {
+        templateUrl: 'views/user/create.html',
+        controller: 'UserCreateCtrl'
     }).otherwise({
         redirectTo: '/'
     })
@@ -179,7 +185,7 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
     $scope.changeTransType = function (type) {
         $scope.order.quantity = '';
         $scope.order.total = '';
-    }
+    };
     
     $scope.createOrder = function () {
         alert($scope.order);
@@ -189,6 +195,38 @@ app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
         }).error(function (data, status) {
             console.log('Error ' + data)
             alert('Error ' + data);
+        })
+    }
+});
+
+app.controller('UserListCtrl', function ($scope, $http) {
+    $http.get('/api/v1/user').success(function (data) {
+        $scope.todos = data;
+    }).error(function (data, status) {
+        console.log('Error ' + data)
+    });
+
+    $scope.todoStatusChanged = function (user) {
+        console.log(user);
+        $http.put('/api/v1/user/' + user.id, user).success(function (data) {
+            console.log('status changed');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
+});
+
+app.controller('UserCreateCtrl', function ($scope, $http, $location) {
+    $scope.user = {
+        done: false
+    };
+
+    $scope.createUser = function () {
+        console.log($scope.user);
+        $http.post('/api/v1/user', $scope.user).success(function (data) {
+            $location.path('/user/list');
+        }).error(function (data, status) {
+            console.log('Error ' + data)
         })
     }
 });
