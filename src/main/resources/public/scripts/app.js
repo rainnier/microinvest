@@ -23,6 +23,18 @@
                 templateUrl: 'login/index.view.html',
                 controller: 'Login.IndexController',
                 controllerAs: 'vm'
+            })
+            .state('orderlist', {
+                url: '/orderz/list',
+                templateUrl:  'views/order/list.html',
+                controller: 'OrderListCtrl',
+                controllerAs: 'vm'
+            })
+            .state('ordercreate', {
+                url: '/orderz/create',
+                templateUrl:  'views/order/create.html',
+                controller: 'OrderCreateCtrl',
+                controllerAs: 'vm'
             });
     }
 
@@ -41,4 +53,63 @@
             }
         });
     }
+    
+    app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
+        $scope.order = {
+            done: false,
+            type: 'buy',
+            stock: 'MEG',
+            price: '4.53',
+            cash: '77.00',
+            quantity: '',
+            total: '',
+            buyingPower: '77.00'
+        };
+        
+        $scope.$watch('order.total', function(newVal, oldVal) {
+            if($scope.order.type == 'buy') {
+                $scope.order.quantity = newVal/$scope.order.price/1.005;
+            }
+        });
+        
+        $scope.$watch('order.quantity', function(newVal, oldVal) {
+            if($scope.order.type == 'sell') {
+                $scope.order.total = newVal*$scope.order.price*0.99;
+            }
+        });
+        
+        $scope.changeTransType = function (type) {
+            $scope.order.quantity = '';
+            $scope.order.total = '';
+        };
+        
+        $scope.createOrder = function () {
+            alert($scope.order);
+            console.log($scope.order);
+            $http.post('/api/v1/orderz', $scope.order).success(function (data) {
+                $location.path('/orderz/list');
+            }).error(function (data, status) {
+                console.log('Error ' + data)
+                alert('Error ' + data);
+            })
+        }
+    });
+    
+    app.controller('OrderListCtrl', function ($scope, $http) {
+        $http.get('/api/v1/orderz').success(function (data) {
+            $scope.trans = data;
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        });
+        
+        $scope.todoStatusChanged = function (orderz) {
+            console.log(orderz);
+            $http.put('/api/v1/orderz/' + orderz.id, orderz).success(function (data) {
+                console.log('status changed');
+            }).error(function (data, status) {
+                console.log('Error ' + data)
+            })
+        }
+    });
+
 })();
