@@ -36,7 +36,7 @@
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage) {
+    function run($rootScope, $http, $location, $localStorage, $httpBackend) {
         
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
         $httpBackend.whenPOST('/api/v1/orderz').passThrough();
