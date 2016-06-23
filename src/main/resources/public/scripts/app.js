@@ -8,7 +8,7 @@
 
     function config($stateProvider, $urlRouterProvider) {
         // default route
-        $urlRouterProvider.otherwise("/");
+        //$urlRouterProvider.otherwise("/");
 
         // app routes
         $stateProvider
