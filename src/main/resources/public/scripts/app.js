@@ -36,7 +36,7 @@
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage) {
+    function run($rootScope, $http, $location, $localStorage, $httpBackend) {
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
@@ -50,6 +50,10 @@
                 $location.path('/login');
             }
         });
+        
+        // pass through any urls not handled above so static files are served correctly
+        $httpBackend.whenGET(/^\w+.*/).passThrough();
+        $httpBackend.whenPOST(/^\w+.*/).passThrough();
     }
     
     app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
