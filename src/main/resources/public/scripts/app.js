@@ -37,6 +37,10 @@
     }
 
     function run($rootScope, $http, $location, $localStorage) {
+        
+        $httpBackend.whenGET('/api/v1/orderz').passThrough();
+        $httpBackend.whenPOST('/api/v1/orderz').passThrough();
+        
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
