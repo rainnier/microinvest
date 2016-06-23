@@ -6,10 +6,7 @@ var app = angular.module('app', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute',
-    'ngMessages', 
-    'ngStorage', 
-    'ngMockE2E'
+    'ngRoute'
 ]);
 
 app.config(function ($routeProvider) {
