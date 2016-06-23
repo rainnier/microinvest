@@ -38,7 +38,7 @@
 
     function run($rootScope, $http, $location, $localStorage) {
         // keep user logged in after page refresh
-        if ($localStorage.currentUser) {
+        /*if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
         }
 
@@ -49,7 +49,7 @@
             if (restrictedPage && !$localStorage.currentUser) {
                 $location.path('/login');
             }
-        });
+        });*/
         
     }
     
