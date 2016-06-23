@@ -2,7 +2,7 @@
  * Created by shekhargulati on 10/06/14.
  */
 
-var app = angular.module('microinvestapp', [
+var app = angular.module('app', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
