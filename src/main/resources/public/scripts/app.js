@@ -6,7 +6,7 @@
         .config(config)
         .run(run);
 
-    function config($stateProvider, $urlRouterProvider, $routeProvider) {
+    function config($stateProvider, $urlRouterProvider) {
         // default route
         $urlRouterProvider.when('/orderz/list', {
             templateUrl: 'views/order/list.html',
