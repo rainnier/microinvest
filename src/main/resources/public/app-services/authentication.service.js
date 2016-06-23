@@ -14,7 +14,7 @@
         return service;
 
         function Login(username, password, callback) {
-            /*$http.post('/api/authenticate', { username: username, password: password })
+            $http.post('/api/authenticate', { username: username, password: password })
                 .success(function (response) {
                     // login successful if there's a token in the response
                     if (response.token) {
@@ -30,8 +30,7 @@
                         // execute callback with false to indicate failed login
                         callback(false);
                     }
-                });*/
-            callback(true);
+                });
         }
 
         function Logout() {

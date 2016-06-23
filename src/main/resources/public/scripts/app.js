@@ -2,13 +2,13 @@
     'use strict';
 
     var app = angular
-        .module('app', ['ui.router', 'ngMessages', 'ngStorage'])
+        .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E'])
         .config(config)
         .run(run);
 
     function config($stateProvider, $urlRouterProvider) {
         // default route
-        //$urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/");
 
         // app routes
         $stateProvider
@@ -38,7 +38,7 @@
 
     function run($rootScope, $http, $location, $localStorage) {
         // keep user logged in after page refresh
-        /*if ($localStorage.currentUser) {
+        if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
         }
 
@@ -49,8 +49,7 @@
             if (restrictedPage && !$localStorage.currentUser) {
                 $location.path('/login');
             }
-        });*/
-        
+        });
     }
     
     app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
