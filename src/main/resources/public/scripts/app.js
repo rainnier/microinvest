@@ -2,13 +2,19 @@
     'use strict';
 
     var app = angular
-        .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E', 'ngRoute'])
+        .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E'])
         .config(config)
         .run(run);
 
     function config($stateProvider, $urlRouterProvider, $routeProvider) {
         // default route
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.when('/orderz/list', {
+            templateUrl: 'views/order/list.html',
+            controller: 'OrderListCtrl'
+        }).when('/orderz/create', {
+            templateUrl: 'views/order/create.html',
+            controller: 'OrderCreateCtrl'
+        }).otherwise("/");
 
         // app routes
         $stateProvider
@@ -37,13 +43,6 @@
                 controllerAs: 'vm'*/
             });
             
-            $routeProvider.when('/orderz/list', {
-                templateUrl: 'views/order/list.html',
-                controller: 'OrderListCtrl'
-            }).when('/orderz/create', {
-                templateUrl: 'views/order/create.html',
-                controller: 'OrderCreateCtrl'
-            });
     }
 
     function run($rootScope, $http, $location, $localStorage) {
