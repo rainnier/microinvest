@@ -8,13 +8,7 @@
 
     function config($stateProvider, $urlRouterProvider) {
         // default route
-        $urlRouterProvider.when('/orderz/list', {
-            templateUrl: 'views/order/list.html',
-            controller: 'OrderListCtrl'
-        }).when('/orderz/create', {
-            templateUrl: 'views/order/create.html',
-            controller: 'OrderCreateCtrl'
-        }).otherwise("/");
+        $urlRouterProvider.otherwise("/");
 
         // app routes
         $stateProvider
@@ -29,20 +23,17 @@
                 templateUrl: 'login/index.view.html',
                 controller: 'Login.IndexController',
                 controllerAs: 'vm'
-            /*})
+            })
             .state('orderlist', {
                 url: '/orderz/list',
                 templateUrl:  'views/order/list.html',
-                controller: 'OrderListCtrl',
-                controllerAs: 'vm'
+                controller: 'OrderListCtrl'
             })
             .state('ordercreate', {
                 url: '/orderz/create',
                 templateUrl:  'views/order/create.html',
-                controller: 'OrderCreateCtrl',
-                controllerAs: 'vm'*/
+                controller: 'OrderCreateCtrl'
             });
-            
     }
 
     function run($rootScope, $http, $location, $localStorage) {
