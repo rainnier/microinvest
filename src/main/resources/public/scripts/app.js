@@ -6,7 +6,11 @@ var app = angular.module('microinvestapp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'ui.router', 
+    'ngMessages', 
+    'ngStorage', 
+    'ngMockE2E'
 ]);
 
 app.config(function ($routeProvider) {
