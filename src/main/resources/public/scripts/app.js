@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular
+    var app = angular
         .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E'])
         .config(config)
         .run(run);
