@@ -7,7 +7,6 @@ var app = angular.module('app', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'ui.router', 
     'ngMessages', 
     'ngStorage', 
     'ngMockE2E'
