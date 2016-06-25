@@ -39,7 +39,7 @@ public class OrderService {
         System.out.println(body);
         Order order = new Gson().fromJson(body, Order.class);
         collection.insert(new BasicDBObject("title", order.getType())
-            .append("stock", order.getStock().append("type", order.getType())
+            .append("stock", order.getStock()).append("type", order.getType())
             .append("quantity", order.getQuantity().toPlainString())
             .append("price", order.getPrice().toPlainString())
             .append("total", order.getTotal().toPlainString())
