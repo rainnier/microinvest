@@ -14,8 +14,8 @@
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'index.view.html',
-                controller: 'Home.IndexController',
+                templateUrl:  'views/order/list.html',
+                controller: 'OrderListCtrl',
                 controllerAs: 'vm'
             })
             .state('login', {
@@ -38,6 +38,7 @@
 
     function run($rootScope, $http, $location, $localStorage, $httpBackend) {
         
+        $httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
         $httpBackend.whenPOST('/api/v1/orderz').passThrough();
         
@@ -47,7 +48,7 @@
         }
 
         // redirect to login page if not logged in and trying to access a restricted page
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        $rootScope.$on('$locationChangeStart', function (event, ngMessagesitxt, current) {
             var publicPages = ['/login'];
             var restrictedPage = publicPages.indexOf($location.path()) === -1;
             if (restrictedPage && !$localStorage.currentUser) {
