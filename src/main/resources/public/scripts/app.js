@@ -120,7 +120,7 @@
     
     app.controller('GroupOrderListCtrl', function ($scope, $http) {
         $http.get('/api/v1/gorder').success(function (data) {
-            $scope.gorder = data;
+            $scope.gorders = data;
         }).error(function (data, status) {
             console.log('Error ' + data)
         });
