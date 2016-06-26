@@ -11,14 +11,18 @@ import java.util.Date;
 public class GroupOrder {
 
     private String id;
+    private String stock;
+    private String transactionType;
     private String title;
+    private long amountInBucket;
+    private long stockPrice;
     private boolean done;
     private Date createdOn = new Date();
 
     public GroupOrder(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
         this.title = dbObject.getString("title");
-        this.done = dbObject.getBoolean("done");
+        this.done = dbObject.getBoolean("done"); 
         this.createdOn = dbObject.getDate("createdOn");
     }
 

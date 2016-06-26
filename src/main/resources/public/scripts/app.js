@@ -33,6 +33,16 @@
                 url: '/orderz/create',
                 templateUrl:  'views/order/create.html',
                 controller: 'OrderCreateCtrl'
+            })
+            .state('grouporderlist', {
+                url: '/orderz/list',
+                templateUrl:  'views/grouporder/list.html',
+                controller: 'OrderListCtrl'
+            })
+            .state('ordercreate', {
+                url: '/orderz/create',
+                templateUrl:  'views/order/create.html',
+                controller: 'OrderCreateCtrl'
             });
     }
 
@@ -87,13 +97,11 @@
         };
         
         $scope.createOrder = function () {
-            alert($scope.order);
             console.log($scope.order);
             $http.post('/api/v1/orderz', $scope.order).success(function (data) {
                 $location.path('/orderz/list');
             }).error(function (data, status) {
                 console.log('Error ' + data)
-                alert('Error ' + data);
             })
         }
     });
@@ -108,6 +116,23 @@
         $scope.todoStatusChanged = function (orderz) {
             console.log(orderz);
             $http.put('/api/v1/orderz/' + orderz.id, orderz).success(function (data) {
+                console.log('status changed');
+            }).error(function (data, status) {
+                console.log('Error ' + data)
+            })
+        }
+    });
+    
+    app.controller('OrderListCtrl', function ($scope, $http) {
+        $http.get('/api/v1/gorder').success(function (data) {
+            $scope.gorder = data;
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        });
+        
+        $scope.todoStatusChanged = function (gorder) {
+            console.log(gorder);
+            $http.put('/api/v1/gorder/' + gorder.id, gorder).success(function (data) {
                 console.log('status changed');
             }).error(function (data, status) {
                 console.log('Error ' + data)

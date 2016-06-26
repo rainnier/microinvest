@@ -1,5 +1,4 @@
-<h2>Group Orders <a class="btn btn-primary pull-right" href="#/gorder/create"><i
-        class="icon-plus-sign icon-white"></i>Add Group Order</a></h2>
+<h2>Group Orders (Buckets)</h2>
 
 <table class="table table-hover">
     <tr>
@@ -10,34 +9,34 @@
             STOCK
         </th>
         <th>
-            SHARES
+            TRANSACTION TYPE
         </th>
         <th>
-            MKT VALUE
+            AMOUNT IN BUCKET
         </th>
-        <th>TOTAL COST</th>
-        <th>PROFIT/LOSS</th>
-        <th>%P/L</th>
+        <th>
+            AMOUNT REMAINING
+        </th>
+        <th>
+            AMOUNT TARGET
+        </th>
     </tr>
-    <tr class="success-{{todo.done}}" ng-repeat="todo in todos">
+    <tr class="success-{{tran.done}}" ng-repeat="tran in trans">
         <td>{{$index+1}}</td>
         <td>
-            {{todo.title}}
+            {{gorder.stock}}
         </td>
         <td>
-             
+            {{gorder.type}}
         </td>
         <td>
-            
+            {{gorder.amountInBucket}}
         </td>
         <td>
-            
+            {{8000 - gorder.amountInBucket}}
         </td>
         <td>
-            
-        </td>
-        <td>
-            
+            8000 OR MORE
         </td>
     </tr>
 </table>

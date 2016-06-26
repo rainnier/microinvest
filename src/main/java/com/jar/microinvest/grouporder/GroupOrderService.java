@@ -33,7 +33,7 @@ public class GroupOrderService {
     }
 
     public void createNewGroupOrder(String body) {
-        System.out.println("createNewHoldings");
+        System.out.println("createNewGroupOrder");
         GroupOrder groupOrder = new Gson().fromJson(body, GroupOrder.class);
         collection.insert(new BasicDBObject("title", groupOrder.getTitle()).append("done", groupOrder.isDone()).append("createdOn", new Date()));
     }
