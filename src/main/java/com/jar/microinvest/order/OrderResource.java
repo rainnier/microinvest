@@ -28,6 +28,14 @@ public class OrderResource {
             return response;
         }, new JsonTransformer());
 
+        post(API_CONTEXT + "/orderzFill", "application/json", (request, response) -> {
+            orderService.fillOrder(request.body());
+            response.status(201);
+            return response;
+        }, new JsonTransformer());
+
+
+
         get(API_CONTEXT + "/orderz/:id", "application/json", (request, response)
 
                 -> orderService.find(request.params(":id")), new JsonTransformer());
@@ -35,6 +43,10 @@ public class OrderResource {
         get(API_CONTEXT + "/orderz", "application/json", (request, response)
 
                 -> orderService.findAll(), new JsonTransformer());
+
+        get(API_CONTEXT + "/orderzSummary", "application/json", (request, response)
+
+                -> orderService.summarizeOrders(), new JsonTransformer());
 
         Spark.put(API_CONTEXT + "/orderz/:id", "application/json", (request, response)
 

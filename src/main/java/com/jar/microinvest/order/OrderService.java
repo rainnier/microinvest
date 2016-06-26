@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -43,6 +41,7 @@ public class OrderService {
             .append("quantity", order.getQuantity().toPlainString())
             .append("price", order.getPrice().toPlainString())
             .append("total", order.getTotal().toPlainString())
+            .append("originalOrderAmount", order.getTotal().toPlainString())
             .append("done", order.isDone()).append("createdOn", new Date()));
     }
 
@@ -57,4 +56,56 @@ public class OrderService {
         collection.update(new BasicDBObject("_id", new ObjectId(orderId)), new BasicDBObject("$set", new BasicDBObject("done", order.isDone())));
         return this.find(orderId);
     }
+
+
+    public List<Order> summarizeOrders() {
+        System.out.println("summarizeOrders");
+        List<Order> orderz = new ArrayList<>();
+        Map<String,Order> orderMap = new HashMap<>();
+        DBCursor dbObjects = collection.find();
+        while (dbObjects.hasNext()) {
+            DBObject dbObject = dbObjects.next();
+            Order order = new Order((BasicDBObject) dbObject);
+            String stock = order.getStock();
+            if(orderMap.containsKey(stock)){
+                Order temp = orderMap.get(stock);
+                temp.setTotal(temp.getTotal().add(order.getTotal()));
+                orderMap.put(stock,temp);
+            } else {
+                orderMap.put(stock,order);
+            }
+        }
+        orderz.addAll(orderMap.values());
+        return orderz;
+    }
+
+    public void fillOrder(String body) {
+
+        System.out.println("fillOrder");
+        System.out.println(body);
+        Order orderToFill = new Gson().fromJson(body, Order.class);
+        String orderToFillStock = orderToFill.getStock();
+        System.out.println("orderToFill.getTotal():"+orderToFill.getTotal());
+
+        List<Order> orderz = new ArrayList<>();
+
+        DBCursor dbObjects = collection.find();
+        while (dbObjects.hasNext()) {
+            DBObject dbObject = dbObjects.next();
+            Order order = new Order((BasicDBObject) dbObject);
+            String stock = order.getStock();
+            if(orderToFillStock.equalsIgnoreCase(stock)){
+                orderz.add(order);
+            }
+        }
+
+
+        //TODO:Find order near the orderToFill Total
+        //TODO:Create Holdings
+        //TODO:Update Order Status to Done if ALL MONEY IS SPENT
+        //TODO:Update Total Cost
+        //TODO:Add new field Original Cost -> this does not change based on original order
+
+    }
+
 }

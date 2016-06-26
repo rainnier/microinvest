@@ -20,6 +20,7 @@ public class Order {
     private BigDecimal quantity;
     private BigDecimal price;
     private BigDecimal total;
+    private BigDecimal originalOrderAmount;
 
     public Order(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
@@ -30,6 +31,7 @@ public class Order {
         this.quantity = this.getBigDecimalVersion(dbObject.getString("quantity"));
         this.price = this.getBigDecimalVersion(dbObject.getString("price"));
         this.total = this.getBigDecimalVersion(dbObject.getString("total"));
+        this.originalOrderAmount = this.getBigDecimalVersion(dbObject.getString("total"));
     }
 
     public BigDecimal getBigDecimalVersion(String bdString){
@@ -79,5 +81,17 @@ public class Order {
 
     public void setStock(String stock) {
         this.stock = stock;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public BigDecimal getOriginalOrderAmount() {
+        return originalOrderAmount;
+    }
+
+    public void setOriginalOrderAmount(BigDecimal originalOrderAmount) {
+        this.originalOrderAmount = originalOrderAmount;
     }
 }
