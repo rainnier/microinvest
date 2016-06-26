@@ -35,14 +35,9 @@
                 controller: 'OrderCreateCtrl'
             })
             .state('grouporderlist', {
-                url: '/orderz/list',
+                url: '/gorder/list',
                 templateUrl:  'views/grouporder/list.html',
-                controller: 'OrderListCtrl'
-            })
-            .state('ordercreate', {
-                url: '/orderz/create',
-                templateUrl:  'views/order/create.html',
-                controller: 'OrderCreateCtrl'
+                controller: 'GroupOrderListCtrl'
             });
     }
 
@@ -123,7 +118,7 @@
         }
     });
     
-    app.controller('OrderListCtrl', function ($scope, $http) {
+    app.controller('GroupOrderListCtrl', function ($scope, $http) {
         $http.get('/api/v1/gorder').success(function (data) {
             $scope.gorder = data;
         }).error(function (data, status) {
