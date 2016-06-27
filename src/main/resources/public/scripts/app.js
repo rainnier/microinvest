@@ -78,7 +78,7 @@
         });
     }
     
-    app.controller('OrderCreateCtrl', function ($scope, $http, $location) {
+    app.controller('OrderCreateCtrl', function ($scope, $http, $location, $filter) {
         $scope.order = {
             done: false,
             type: 'buy',
@@ -92,13 +92,13 @@
         
         $scope.$watch('order.total', function(newVal, oldVal) {
             if($scope.order.type == 'buy') {
-                $scope.order.quantity = newVal/$scope.order.price/1.005;
+                $scope.order.quantity = $filter('number')(newVal/$scope.order.price/1.005, 2);
             }
         });
         
         $scope.$watch('order.quantity', function(newVal, oldVal) {
             if($scope.order.type == 'sell') {
-                $scope.order.total = newVal*$scope.order.price*0.99;
+                $scope.order.total = $filter('number')(newVal*$scope.order.price*0.99, 2);
             }
         });
         
