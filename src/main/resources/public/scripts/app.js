@@ -34,17 +34,15 @@
                 templateUrl:  'views/order/create.html',
                 controller: 'OrderCreateCtrl'
             })
-<<<<<<< HEAD
             .state('grouporderlist', {
                 url: '/gorder/list',
                 templateUrl:  'views/grouporder/list.html',
                 controller: 'GroupOrderListCtrl'
-=======
+            })
             .state('traderconsole', {
                 url: '/trader/view',
                 templateUrl:  'views/trader/view.html',
                 controller: 'TraderViewCtrl'
->>>>>>> 63eaddc47cc29be5768308400421cc8790e8820f
             });
     }
 
