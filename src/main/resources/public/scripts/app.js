@@ -55,9 +55,7 @@
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage, $httpBackend, $transform) {
-        
-        window.$transform = $transform;
+    function run($rootScope, $http, $location, $localStorage, $httpBackend) {
         
         $httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
