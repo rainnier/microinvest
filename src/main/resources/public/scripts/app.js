@@ -119,6 +119,7 @@
     });
     
     app.controller('OrderListCtrl', function ($scope, $http) {
+        
         $http.get('/api/v1/orderz').success(function (data) {
             $scope.trans = data;
         }).error(function (data, status) {
@@ -129,10 +130,19 @@
             console.log(tran);
             $http.put('/api/v1/orderz/' + tran.id, tran).success(function (data) {
                 console.log('deleted order');
+                
+                // temporary reload - possible cleaner code
+                $http.get('/api/v1/orderz').success(function (data) {
+                    $scope.trans = data;
+                }).error(function (data, status) {
+                    console.log('Error ' + data)
+                });
+                
             }).error(function (data, status) {
                 console.log('Error ' + data)
             })
         }
+        
     });
     
     app.controller('GroupOrderListCtrl', function ($scope, $http) {
