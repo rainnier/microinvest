@@ -33,6 +33,8 @@
                 <td>
                     <a class="btn btn-primary pull-right" ng-click="deleteOrder(tran)">
                     <i class="icon-plus-sign icon-white"></i>Cancel</a>
+                    
+                    <input type="checkbox" ng-change="todoStatusChanged(tran)">
                 </td>
             </tr>
         </table>
