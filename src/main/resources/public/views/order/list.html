@@ -11,10 +11,13 @@
                     STOCK
                 </th>
                 <th>
-                    TRANSACTION TYPE
+                    TYPE
                 </th>
                 <th>
-                    TOTAL COST
+                    AMOUNT
+                </th>
+                <th>
+                    ACTION
                 </th>
             </tr>
             <tr class="success-{{tran.done}}" ng-repeat="tran in trans">
@@ -26,6 +29,10 @@
                 </td>
                 <td>
                     {{tran.total}}
+                </td>
+                <td>
+                    <a class="btn btn-primary pull-right" href="#">
+                    <i class="icon-plus-sign icon-white"></i>Cancel</a>
                 </td>
             </tr>
         </table>

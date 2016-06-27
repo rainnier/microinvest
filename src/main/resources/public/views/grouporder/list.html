@@ -7,26 +7,19 @@
         <table class="table table-hover">
             <tr>
                 <th>
-                    #
-                </th>
-                <th>
                     STOCK
                 </th>
                 <th>
-                    TRANSACTION TYPE
+                    TYPE
                 </th>
                 <th>
-                    AMOUNT IN BUCKET
+                    IN BUCKET
                 </th>
                 <th>
-                    AMOUNT REMAINING
-                </th>
-                <th>
-                    AMOUNT TARGET
+                    ACTION
                 </th>
             </tr>
             <tr class="success-{{tran.done}}" ng-repeat="gorder in gorders">
-                <td>{{$index+1}}</td>
                 <td>
                     {{gorder.stock}}
                 </td>
@@ -37,10 +30,7 @@
                     {{gorder.amountInBucket}}
                 </td>
                 <td>
-                    {{8000 - gorder.amountInBucket}}
-                </td>
-                <td>
-                    8000 OR MORE
+                    buy/sell/cancel
                 </td>
             </tr>
         </table>
