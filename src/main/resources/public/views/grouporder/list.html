@@ -1,42 +1,50 @@
-<h2>Group Orders (Buckets)</h2>
+<div class="scrollable">
+<div class="scrollable-content">
+    <div class="container-fluid section section-break" id="gorderList">
 
-<table class="table table-hover">
-    <tr>
-        <th>
-            #
-        </th>
-        <th>
-            STOCK
-        </th>
-        <th>
-            TRANSACTION TYPE
-        </th>
-        <th>
-            AMOUNT IN BUCKET
-        </th>
-        <th>
-            AMOUNT REMAINING
-        </th>
-        <th>
-            AMOUNT TARGET
-        </th>
-    </tr>
-    <tr class="success-{{tran.done}}" ng-repeat="gorder in gorders">
-        <td>{{$index+1}}</td>
-        <td>
-            {{gorder.stock}}
-        </td>
-        <td>
-            {{gorder.type}}
-        </td>
-        <td>
-            {{gorder.amountInBucket}}
-        </td>
-        <td>
-            {{8000 - gorder.amountInBucket}}
-        </td>
-        <td>
-            8000 OR MORE
-        </td>
-    </tr>
-</table>
+        <h2>Group Orders (Buckets)</h2>
+        
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    STOCK
+                </th>
+                <th>
+                    TRANSACTION TYPE
+                </th>
+                <th>
+                    AMOUNT IN BUCKET
+                </th>
+                <th>
+                    AMOUNT REMAINING
+                </th>
+                <th>
+                    AMOUNT TARGET
+                </th>
+            </tr>
+            <tr class="success-{{tran.done}}" ng-repeat="gorder in gorders">
+                <td>{{$index+1}}</td>
+                <td>
+                    {{gorder.stock}}
+                </td>
+                <td>
+                    {{gorder.type}}
+                </td>
+                <td>
+                    {{gorder.amountInBucket}}
+                </td>
+                <td>
+                    {{8000 - gorder.amountInBucket}}
+                </td>
+                <td>
+                    8000 OR MORE
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</div>
