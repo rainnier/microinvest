@@ -60,7 +60,7 @@
         $httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
         $httpBackend.whenPOST('/api/v1/orderz').passThrough();
-        $httpBackend.whenPUT('/api/v1/orderz').passThrough();
+        $httpBackend.whenPUT('/\/api/v1/orderz\/(.+)\/').passThrough();
         $httpBackend.whenGET('/api/v1/gorder').passThrough();
         $httpBackend.whenPOST('/api/v1/gorder').passThrough
         
