@@ -60,7 +60,7 @@ public class OrderService {
     
     public void remove(String orderId) {
         System.out.println("remove");
-        collection.remove(this.find(orderId));
+        collection.remove(new BasicDBObject("_id", new ObjectId(orderId)));
     }
     
 }
