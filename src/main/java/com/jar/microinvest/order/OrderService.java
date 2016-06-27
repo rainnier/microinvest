@@ -57,4 +57,10 @@ public class OrderService {
         collection.update(new BasicDBObject("_id", new ObjectId(orderId)), new BasicDBObject("$set", new BasicDBObject("done", order.isDone())));
         return this.find(orderId);
     }
+    
+    public void remove(String orderId) {
+        System.out.println("remove");
+        collection.remove(this.find(orderId));
+    }
+    
 }

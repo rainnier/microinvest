@@ -124,10 +124,10 @@
             console.log('Error ' + data)
         });
         
-        $scope.todoStatusChanged = function (orderz) {
-            console.log(orderz);
-            $http.put('/api/v1/orderz/' + orderz.id, orderz).success(function (data) {
-                console.log('status changed');
+        $scope.deleteOrder = function (tran) {
+            console.log(tran);
+            $http.put('/api/v1/orderz/' + tran.id, tran).success(function (data) {
+                console.log('deleted order');
             }).error(function (data, status) {
                 console.log('Error ' + data)
             })
