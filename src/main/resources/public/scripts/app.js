@@ -15,10 +15,7 @@
         .config(config)
         .run(run);
 
-    function config($stateProvider, $urlRouterProvider, $transform) {
-        
-        window.$transform = $transform;
-        
+    function config($stateProvider, $urlRouterProvider) {
         // default route
         $urlRouterProvider.otherwise("/");
 
@@ -58,7 +55,9 @@
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage, $httpBackend) {
+    function run($rootScope, $http, $location, $localStorage, $httpBackend, $transform) {
+        
+        window.$transform = $transform;
         
         $httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
