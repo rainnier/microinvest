@@ -2,11 +2,23 @@
     'use strict';
 
     var app = angular
-        .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E'])
+        .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E',
+          'mobile-angular-ui',
+  
+          // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'
+          // it is at a very beginning stage, so please be careful if you like to use
+          // in production. This is intended to provide a flexible, integrated and and 
+          // easy to use alternative to other 3rd party libs like hammer.js, with the
+          // final pourpose to integrate gestures into default ui interactions like 
+          // opening sidebars, turning switches on/off ..
+          'mobile-angular-ui.gestures'])
         .config(config)
         .run(run);
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $transform) {
+        
+        window.$transform = $transform;
+        
         // default route
         $urlRouterProvider.otherwise("/");
 
