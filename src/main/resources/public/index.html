@@ -15,39 +15,47 @@
 </head>
 <body>
 
-
-<!-- main app container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">Micro Investments</a>
-                    <a class="navbar-brand" href="#/holdings/list">Holdings</a>
-                    <a class="navbar-brand" href="#/orderz/list">Orders</a>
-                    <a class="navbar-brand" href="#/gorder/list">Group Order</a>
-                    <a class="navbar-brand" href="#/gholdings/list">Group Holdings</a>
-                    <a class="navbar-brand" href="#/user/list">User</a>
-                    <a class="navbar-brand" href="#/trader/view">Trader View</a>
-                    <a class="navbar-brand" href="#/login">Logout</a>
-                </div>
-            </div>
-        </div>
+    <!-- Sidebars -->
+    <div ng-include="'sidebar.html'" 
+            ui-track-as-search-param='true'
+            class="sidebar sidebar-left"></div>
+            
+    <div class="app" 
+         ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
+         ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
         
-        
-                
-            <div class="col-sm-8 col-sm-offset-2">
-                <ui-view></ui-view>
-            </div>
+        <!-- Navbars -->
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+          Mobile Micro Invest
         </div>
-</div>
-
+        <div class="btn-group pull-left">
+          <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+            <i class="fa fa-bars"></i> Menu
+          </div>
+        </div>
+      </div>
+    
+      <div class="navbar navbar-app navbar-absolute-bottom">
+        <div class="btn-group justified">
+          <!--<a href="/docs" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> Docs</a>
+          <a href="https://github.com/mcasimir/mobile-angular-ui" class="btn btn-navbar"><i class="fa fa-github fa-navbar"></i> Sources</a>
+          <a href="https://github.com/mcasimir/mobile-angular-ui/issues" class="btn btn-navbar"><i class="fa fa-exclamation-circle fa-navbar"></i> Issues</a>-->
+        </div>
+      </div>
+      
+        <!-- App Body -->
+      <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+        <div class="app-content">
+          <ui-view></ui-view>
+        </div>
+      </div>
+      
+    </div><!-- ~ .app -->
+    
 <!-- angular scripts -->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
