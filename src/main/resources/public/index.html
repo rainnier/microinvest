@@ -6,29 +6,31 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<div class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Micro Investments</a>
-            <a class="navbar-brand" href="#/holdings/list">Holdings</a>
-            <a class="navbar-brand" href="#/orderz/list">Orders</a>
-            <a class="navbar-brand" href="#/gorder/list">Group Order</a>
-            <a class="navbar-brand" href="#/gholdings/list">Group Holdings</a>
-            <a class="navbar-brand" href="#/user/list">User</a>
-            <a class="navbar-brand" href="#/login">Logout</a>
-        </div>
-    </div>
-</div>
+
 
 <!-- main app container -->
 <div class="jumbotron">
     <div class="container">
+        <div class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Micro Investments</a>
+                    <a class="navbar-brand" href="#/holdings/list">Holdings</a>
+                    <a class="navbar-brand" href="#/orderz/list">Orders</a>
+                    <a class="navbar-brand" href="#/gorder/list">Group Order</a>
+                    <a class="navbar-brand" href="#/gholdings/list">Group Holdings</a>
+                    <a class="navbar-brand" href="#/user/list">User</a>
+                    <a class="navbar-brand" href="#/trader/view">Trader View</a>
+                    <a class="navbar-brand" href="#/login">Logout</a>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-8 col-sm-offset-2">
             <ui-view></ui-view>
         </div>

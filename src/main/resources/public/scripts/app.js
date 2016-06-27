@@ -34,10 +34,17 @@
                 templateUrl:  'views/order/create.html',
                 controller: 'OrderCreateCtrl'
             })
+<<<<<<< HEAD
             .state('grouporderlist', {
                 url: '/gorder/list',
                 templateUrl:  'views/grouporder/list.html',
                 controller: 'GroupOrderListCtrl'
+=======
+            .state('traderconsole', {
+                url: '/trader/view',
+                templateUrl:  'views/trader/view.html',
+                controller: 'TraderViewCtrl'
+>>>>>>> 63eaddc47cc29be5768308400421cc8790e8820f
             });
     }
 
@@ -131,6 +138,47 @@
                 console.log('status changed');
             }).error(function (data, status) {
                 console.log('Error ' + data)
+            })
+        }
+    });
+
+    app.controller('TraderViewCtrl', function ($scope, $http, $location) {
+        $scope.order = {
+            done: false,
+            type: 'buy',
+            stock: 'MEG',
+            price: '4.53',
+            cash: '77.00',
+            quantity: '',
+            total: '',
+            buyingPower: '77.00'
+        };
+
+        $scope.$watch('order.total', function(newVal, oldVal) {
+            if($scope.order.type == 'buy') {
+                $scope.order.quantity = newVal/$scope.order.price/1.005;
+            }
+        });
+
+        $scope.$watch('order.quantity', function(newVal, oldVal) {
+            if($scope.order.type == 'sell') {
+                $scope.order.total = newVal*$scope.order.price*0.99;
+            }
+        });
+
+        $scope.changeTransType = function (type) {
+            $scope.order.quantity = '';
+            $scope.order.total = '';
+        };
+
+        $scope.createOrder = function () {
+            alert($scope.order);
+            console.log($scope.order);
+            $http.post('/api/v1/orderz', $scope.order).success(function (data) {
+                $location.path('/orderz/list');
+            }).error(function (data, status) {
+                console.log('Error ' + data)
+                alert('Error ' + data);
             })
         }
     });
