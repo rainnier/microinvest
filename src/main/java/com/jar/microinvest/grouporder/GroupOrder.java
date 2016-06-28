@@ -16,7 +16,7 @@ public class GroupOrder {
     private String type;
     private String title;
     private BigDecimal amountInBucket;
-    private BigDecimal stockPrice;
+    private BigDecimal price;
     private boolean done;
     private Date createdOn = new Date();
 
@@ -26,7 +26,7 @@ public class GroupOrder {
         this.type = dbObject.getString("type");
         this.title = dbObject.getString("title");
         this.amountInBucket = this.getBigDecimalVersion(dbObject.getString("amountInBucket"));
-        this.stockPrice = this.getBigDecimalVersion(dbObject.getString("stockPrice"));
+        this.price = this.getBigDecimalVersion(dbObject.getString("price"));
         this.done = dbObject.getBoolean("done"); 
         this.createdOn = dbObject.getDate("createdOn");
     }
@@ -61,6 +61,10 @@ public class GroupOrder {
     
     public BigDecimal getAmountInBucket() {
         return amountInBucket;
+    }
+    
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public boolean isDone() {
