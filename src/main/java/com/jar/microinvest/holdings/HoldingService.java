@@ -18,7 +18,7 @@ public class HoldingService {
 
     public HoldingService(DB db) {
         this.db = db;
-        this.collection = db.getCollection("holdings");
+        this.collection = db.getCollection("holdingsCollection");
     }
 
     public List<Holding> findAll() {
@@ -35,7 +35,7 @@ public class HoldingService {
     public void createNewHoldings(String body) {
         System.out.println("createNewHoldings"+ body);
         Holding holding = new Gson().fromJson(body, Holding.class);
-        collection.insert(new BasicDBObject("title", holding.getTitle()).append("done", holding.isDone()).append("createdOn", new Date()));
+        collection.insert(new BasicDBObject("stock", holding.getStock()).append("done", holding.isDone()).append("createdOn", new Date()));
     }
 
     public Holding find(String id) {

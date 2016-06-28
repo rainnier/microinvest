@@ -50,9 +50,10 @@
         
         $httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
+        $httpBackend.whenGET('/api/v1/trader').passThrough();
         $httpBackend.whenGET('/api/v1/orderzSummary').passThrough();
         $httpBackend.whenPOST('/api/v1/orderz').passThrough();
-        $httpBackend.whenPOST('/api/v1/orderzFill').passThrough();
+        $httpBackend.whenPOST('/api/v1/trader').passThrough();
 
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
@@ -224,7 +225,7 @@
         $scope.fillOrder = function () {
             //alert($scope.order);
             console.log($scope.order);
-            $http.post('/api/v1/orderzFill', $scope.order).success(function (data) {
+            $http.post('/api/v1/trader/', $scope.order).success(function (data) {
                 $location.path('/trader/view');
             }).error(function (data, status) {
                 console.log('Error ' + data);

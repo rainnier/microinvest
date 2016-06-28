@@ -57,7 +57,6 @@ public class OrderService {
         return this.find(orderId);
     }
 
-
     public List<Order> summarizeOrders() {
         System.out.println("summarizeOrders");
         List<Order> orderz = new ArrayList<>();
@@ -77,35 +76,6 @@ public class OrderService {
         }
         orderz.addAll(orderMap.values());
         return orderz;
-    }
-
-    public void fillOrder(String body) {
-
-        System.out.println("fillOrder");
-        System.out.println(body);
-        Order orderToFill = new Gson().fromJson(body, Order.class);
-        String orderToFillStock = orderToFill.getStock();
-        System.out.println("orderToFill.getTotal():"+orderToFill.getTotal());
-
-        List<Order> orderz = new ArrayList<>();
-
-        DBCursor dbObjects = collection.find();
-        while (dbObjects.hasNext()) {
-            DBObject dbObject = dbObjects.next();
-            Order order = new Order((BasicDBObject) dbObject);
-            String stock = order.getStock();
-            if(orderToFillStock.equalsIgnoreCase(stock)){
-                orderz.add(order);
-            }
-        }
-
-
-        //TODO:Find order near the orderToFill Total
-        //TODO:Create Holdings
-        //TODO:Update Order Status to Done if ALL MONEY IS SPENT
-        //TODO:Update Total Cost
-        //TODO:Add new field Original Cost -> this does not change based on original order
-
     }
 
 }

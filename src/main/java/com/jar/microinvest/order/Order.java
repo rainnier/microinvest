@@ -94,4 +94,8 @@ public class Order {
     public void setOriginalOrderAmount(BigDecimal originalOrderAmount) {
         this.originalOrderAmount = originalOrderAmount;
     }
+
+    public String getId() {
+        return id;
+    }
 }
