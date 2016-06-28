@@ -17,7 +17,7 @@ public class OrderService {
 
     private final DB db;
     private final DBCollection collection;
-    private final DBCollection collection;
+    private final DBCollection gorderCollection;
 
     public OrderService(DB db) {
         this.db = db;
@@ -54,7 +54,7 @@ public class OrderService {
         	.append("type", order.getType())
         	.append("done", false);
     
-    	collection.update(searchQuery, newDocument);
+    	gorderCollection.update(searchQuery, newDocument);
 	
         System.out.println("createNewOrder");
         System.out.println(body);
