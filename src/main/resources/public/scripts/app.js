@@ -151,7 +151,7 @@
         
     });
     
-    app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location, $filter) {
+    /*app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location, $filter) {
         $scope.gorder = {
             done: false,
             type: 'buy',
@@ -187,7 +187,7 @@
                 console.log('Error ' + data)
             })
         }
-    });
+    });*/
 
     app.controller('TraderViewCtrl', function ($scope, $http, $location) {
         $scope.order = {
