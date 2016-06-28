@@ -25,8 +25,8 @@ public class GroupOrder {
         this.stock = dbObject.getString("stock");
         this.type = dbObject.getString("type");
         this.title = dbObject.getString("title");
-        this.amountInBucket = dbObject.getBigDecimalVersion("amountInBucket");
-        this.stockPrice = dbObject.getBigDecimalVersion("stockPrice");
+        this.amountInBucket = this.getBigDecimalVersion(dbObject.getString("amountInBucket"));
+        this.stockPrice = this.getBigDecimalVersion(dbObject.getString("stockPrice"));
         this.done = dbObject.getBoolean("done"); 
         this.createdOn = dbObject.getDate("createdOn");
     }
