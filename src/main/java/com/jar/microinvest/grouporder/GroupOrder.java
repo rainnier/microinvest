@@ -50,6 +50,18 @@ public class GroupOrder {
     public String getTitle() {
         return title;
     }
+    
+    public String getStock() {
+        return stock;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    
+    public BigDecimal getAmountInBucket() {
+        return amountInBucket;
+    }
 
     public boolean isDone() {
         return done;

@@ -49,6 +49,11 @@
                 templateUrl:  'views/grouporder/list.html',
                 controller: 'GroupOrderListCtrl'
             })
+            .state('groupordercreate', {
+                url: '/gorder/create',
+                templateUrl:  'views/grouporder/create.html',
+                controller: 'GroupOrderCreateCtrl'
+            })
             .state('traderconsole', {
                 url: '/trader/view',
                 templateUrl:  'views/trader/view.html',
@@ -144,6 +149,27 @@
             })
         }
         
+    });
+    
+    app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location, $filter) {
+        $scope.gorder = {
+            done: false,
+            type: 'buy',
+            stock: 'MEG',
+            price: '4.53',
+            cash: '77.00',
+            quantity: '',
+            amountInBucket: ''
+        };
+        
+        $scope.createGroupOrder = function () {
+            console.log($scope.order);
+            $http.post('/api/v1/gorder', $scope.order).success(function (data) {
+                $location.path('/gorder/list');
+            }).error(function (data, status) {
+                console.log('Error ' + data)
+            })
+        }
     });
     
     app.controller('GroupOrderListCtrl', function ($scope, $http) {
