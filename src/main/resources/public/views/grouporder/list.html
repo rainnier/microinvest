@@ -27,7 +27,8 @@
                     {{gorder.type}}
                 </td>
                 <td>
-                    {{gorder.amountInBucket}}
+                    <md-progress-circular md-mode="determinate" value={{gorder.amountInBucket/8000*100}}></md-progress-circular>
+                    {{gorder.amountInBucket}}/8000
                 </td>
                 <td>
                     buy/sell/cancel

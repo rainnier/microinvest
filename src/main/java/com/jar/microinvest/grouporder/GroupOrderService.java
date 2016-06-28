@@ -42,6 +42,12 @@ public class GroupOrderService {
         System.out.println("find");
         return new GroupOrder((BasicDBObject) collection.findOne(new BasicDBObject("_id", new ObjectId(id))));
     }
+    
+    public GroupOrder findByUnprocessedStock(String stock)
+        System.out.println("findByUnprocessedStock");
+        return new GroupOrder((BasicDBObject) collection.findOne(new BasicDBObject("stock", stock)
+                .append("done", false)));
+    }
 
     public GroupOrder update(String groupOrderId, String body) {
         System.out.println("update");
