@@ -58,18 +58,30 @@
                 url: '/trader/view',
                 templateUrl:  'views/trader/view.html',
                 controller: 'TraderViewCtrl'
+            })
+            .state('orderfill', {
+                url: '/orderz/fill',
+                templateUrl:  'views/order/fill.html',
+                controller: 'OrderFillCtrl'
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage, $httpBackend) {
+    function run($rootScope, $http, $location, $localStorage, $httpBackend, $timeout) {
         
         $httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
+        $httpBackend.whenGET('/api/v1/trader').passThrough();
+        $httpBackend.whenGET('/api/v1/orderzSummary').passThrough();
         $httpBackend.whenPOST('/api/v1/orderz').passThrough();
+<<<<<<< HEAD
         $httpBackend.whenPUT(/\/api\/v1\/orderz\/(.+)/).passThrough();
         $httpBackend.whenGET('/api/v1/gorder').passThrough();
         $httpBackend.whenPOST('/api/v1/gorder').passThrough();
         
+=======
+        $httpBackend.whenPOST('/api/v1/trader').passThrough();
+
+>>>>>>> Neoryder-master
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
@@ -119,7 +131,12 @@
             $http.post('/api/v1/orderz', $scope.order).success(function (data) {
                 $location.path('/orderz/list');
             }).error(function (data, status) {
+<<<<<<< HEAD
                 console.log('Error ' + data)
+=======
+                console.log('Error ' + data);
+                alert('Error ' + data);
+>>>>>>> Neoryder-master
             })
         }
     });
@@ -129,7 +146,7 @@
         $http.get('/api/v1/orderz').success(function (data) {
             $scope.trans = data;
         }).error(function (data, status) {
-            console.log('Error ' + data)
+            console.log('Error ' + data);
         });
         
         $scope.deleteOrder = function (tran) {
@@ -184,12 +201,77 @@
             $http.put('/api/v1/gorder/' + gorder.id, gorder).success(function (data) {
                 console.log('status changed');
             }).error(function (data, status) {
-                console.log('Error ' + data)
+                console.log('Error ' + data);
             })
         }
     });
 
-    app.controller('TraderViewCtrl', function ($scope, $http, $location) {
+    app.controller('TraderViewCtrl', function ($scope, $http, $location, $timeout, $state) {
+
+        $http.get('/api/v1/orderzSummary').success(function (data) {
+            $scope.trans = data;
+        }).error(function (data, status) {
+            console.log('Error ' + data);
+            console.log('status ' + status);
+        });
+
+        $scope.order = {
+            done: false,
+            type: 'buy',
+            stock: 'MEG',
+            price: '4.53',
+            cash: '77.00',
+            quantity: '',
+            total: '',
+            buyingPower: '77.00'
+        };
+
+        $scope.$watch('order.total', function(newVal, oldVal) {
+            if($scope.order.type == 'buy') {
+                $scope.order.quantity = newVal/$scope.order.price/1.005;
+            }
+        });
+
+        $scope.$watch('order.quantity', function(newVal, oldVal) {
+            if($scope.order.type == 'sell') {
+                $scope.order.total = newVal*$scope.order.price*0.99;
+            }
+        });
+
+        // Function to replicate setInterval using $timeout service.
+        $scope.intervalFunction = function(){
+            console.log("$state.is():"+$state);
+            //Checks whether the state is traderconsole before firing the update data function
+            if($state.is('traderconsole')){
+                $timeout(function() {
+                    console.log("angol");
+                    $scope.updateOrderSummary();
+                    $scope.intervalFunction();
+                }, 1000)
+            }
+        };
+
+        // Kick off the interval during load
+        $scope.intervalFunction();
+
+        $scope.changeTransType = function (type) {
+            $scope.order.quantity = '';
+            $scope.order.total = '';
+        };
+
+        //Method to call to update the list in Trader View
+        $scope.updateOrderSummary = function () {
+            console.log("updateOrderSummary");
+            $http.get('/api/v1/orderzSummary').success(function (data) {
+                $scope.trans = data;
+            }).error(function (data, status) {
+                console.log('Error ' + data);
+                console.log('status ' + status);
+            });
+        }
+    });
+
+    app.controller('OrderFillCtrl', function ($scope, $http, $location) {
         $scope.order = {
             done: false,
             type: 'buy',
@@ -218,14 +300,15 @@
             $scope.order.total = '';
         };
 
-        $scope.createOrder = function () {
-            alert($scope.order);
+        $scope.fillOrder = function () {
+            //alert($scope.order);
             console.log($scope.order);
-            $http.post('/api/v1/orderz', $scope.order).success(function (data) {
-                $location.path('/orderz/list');
+            $http.post('/api/v1/trader/', $scope.order).success(function (data) {
+                $location.path('/trader/view');
             }).error(function (data, status) {
-                console.log('Error ' + data)
-                alert('Error ' + data);
+                console.log('Error ' + data);
+                console.log('status ' + status);
+
             })
         }
     });

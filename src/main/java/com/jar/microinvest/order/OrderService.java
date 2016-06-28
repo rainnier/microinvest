@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -62,6 +60,7 @@ public class OrderService {
             .append("quantity", order.getQuantity().toPlainString())
             .append("price", order.getPrice().toPlainString())
             .append("total", order.getTotal().toPlainString())
+            .append("originalOrderAmount", order.getTotal().toPlainString())
             .append("done", order.isDone()).append("createdOn", new Date()));
             
     }
@@ -83,4 +82,25 @@ public class OrderService {
         collection.remove(new BasicDBObject("_id", new ObjectId(orderId)));
     }
     
+    public List<Order> summarizeOrders() {
+        System.out.println("summarizeOrders");
+        List<Order> orderz = new ArrayList<>();
+        Map<String,Order> orderMap = new HashMap<>();
+        DBCursor dbObjects = collection.find();
+        while (dbObjects.hasNext()) {
+            DBObject dbObject = dbObjects.next();
+            Order order = new Order((BasicDBObject) dbObject);
+            String stock = order.getStock();
+            if(orderMap.containsKey(stock)){
+                Order temp = orderMap.get(stock);
+                temp.setTotal(temp.getTotal().add(order.getTotal()));
+                orderMap.put(stock,temp);
+            } else {
+                orderMap.put(stock,order);
+            }
+        }
+        orderz.addAll(orderMap.values());
+        return orderz;
+    }
+
 }

@@ -6,6 +6,8 @@ import com.jar.microinvest.holdings.HoldingResource;
 import com.jar.microinvest.holdings.HoldingService;
 import com.jar.microinvest.order.OrderResource;
 import com.jar.microinvest.order.OrderService;
+import com.jar.microinvest.trader.TraderResource;
+import com.jar.microinvest.trader.TraderService;
 import com.jar.microinvest.user.UserResource;
 import com.jar.microinvest.user.UserService;
 import com.mongodb.*;
@@ -33,6 +35,7 @@ public class Bootstrap {
         new OrderResource(new OrderService(mongo()));
         new GroupOrderResource(new GroupOrderService(mongo()));
         new UserResource(new UserService(mongo()));
+        new TraderResource(new TraderService(mongo()));
 //        new GroupHoldingsResource(new GroupHoldingsService(mongo()));
     }
 
