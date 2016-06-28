@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
     var app = angular
@@ -11,8 +11,7 @@
           // easy to use alternative to other 3rd party libs like hammer.js, with the
           // final pourpose to integrate gestures into default ui interactions like 
           // opening sidebars, turning switches on/off ..
-          'mobile-angular-ui.gestures',
-          'ngMaterial'])
+          'mobile-angular-ui.gestures'])
         .config(config)
         .run(run);
 
@@ -49,11 +48,6 @@
                 templateUrl:  'views/grouporder/list.html',
                 controller: 'GroupOrderListCtrl'
             })
-            .state('groupordercreate', {
-                url: '/gorder/create',
-                templateUrl:  'views/grouporder/create.html',
-                controller: 'GroupOrderCreateCtrl'
-            })
             .state('traderconsole', {
                 url: '/trader/view',
                 templateUrl:  'views/trader/view.html',
@@ -68,7 +62,7 @@
         $httpBackend.whenPOST('/api/v1/orderz').passThrough();
         $httpBackend.whenPUT(/\/api\/v1\/orderz\/(.+)/).passThrough();
         $httpBackend.whenGET('/api/v1/gorder').passThrough();
-        $httpBackend.whenPOST('/api/v1/gorder').passThrough();
+        $httpBackend.whenPOST('/api/v1/gorder').passThrough
         
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
@@ -151,27 +145,6 @@
         
     });
     
-    /*app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location, $filter) {
-        $scope.gorder = {
-            done: false,
-            type: 'buy',
-            stock: 'MEG',
-            price: '4.53',
-            cash: '77.00',
-            quantity: '',
-            amountInBucket: ''
-        };
-        
-        $scope.createGroupOrder = function () {
-            console.log($scope.gorder);
-            $http.post('/api/v1/gorder', $scope.gorder).success(function (data) {
-                $location.path('/gorder/list');
-            }).error(function (data, status) {
-                console.log('Error ' + data)
-            })
-        }
-    });
-    
     app.controller('GroupOrderListCtrl', function ($scope, $http) {
         $http.get('/api/v1/gorder').success(function (data) {
             $scope.gorders = data;
@@ -187,7 +160,7 @@
                 console.log('Error ' + data)
             })
         }
-    });*/
+    });
 
     app.controller('TraderViewCtrl', function ($scope, $http, $location) {
         $scope.order = {
