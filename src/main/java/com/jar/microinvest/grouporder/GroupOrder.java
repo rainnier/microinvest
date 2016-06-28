@@ -15,8 +15,8 @@ public class GroupOrder {
     private String stock;
     private String type;
     private String title;
-    private long amountInBucket;
-    private long stockPrice;
+    private BigDecimal amountInBucket;
+    private BigDecimal stockPrice;
     private boolean done;
     private Date createdOn = new Date();
 
