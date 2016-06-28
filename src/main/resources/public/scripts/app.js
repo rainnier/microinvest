@@ -73,15 +73,11 @@
         $httpBackend.whenGET('/api/v1/trader').passThrough();
         $httpBackend.whenGET('/api/v1/orderzSummary').passThrough();
         $httpBackend.whenPOST('/api/v1/orderz').passThrough();
-<<<<<<< HEAD
         $httpBackend.whenPUT(/\/api\/v1\/orderz\/(.+)/).passThrough();
         $httpBackend.whenGET('/api/v1/gorder').passThrough();
         $httpBackend.whenPOST('/api/v1/gorder').passThrough();
-        
-=======
         $httpBackend.whenPOST('/api/v1/trader').passThrough();
 
->>>>>>> Neoryder-master
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
@@ -131,12 +127,7 @@
             $http.post('/api/v1/orderz', $scope.order).success(function (data) {
                 $location.path('/orderz/list');
             }).error(function (data, status) {
-<<<<<<< HEAD
-                console.log('Error ' + data)
-=======
                 console.log('Error ' + data);
-                alert('Error ' + data);
->>>>>>> Neoryder-master
             })
         }
     });
