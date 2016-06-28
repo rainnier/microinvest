@@ -79,15 +79,8 @@ public class OrderService {
     }
     
     public void remove(String orderId) {
-        /*System.out.println("remove");
+        System.out.println("remove");
         collection.remove(new BasicDBObject("_id", new ObjectId(orderId)));
-        
-        db.mycollection.update(
-            {'_id': ObjectId("5150a1199fac0e6910000002")}, 
-            { $pull: { "items" : { id: 23 } } },
-        false,
-        true 
-        );*/
     }
     
 }

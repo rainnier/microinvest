@@ -11,7 +11,8 @@
           // easy to use alternative to other 3rd party libs like hammer.js, with the
           // final pourpose to integrate gestures into default ui interactions like 
           // opening sidebars, turning switches on/off ..
-          'mobile-angular-ui.gestures'])
+          'mobile-angular-ui.gestures',
+          'ngMaterial'])
         .config(config)
         .run(run);
 
