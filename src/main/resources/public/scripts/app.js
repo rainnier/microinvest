@@ -163,8 +163,8 @@
         };
         
         $scope.createGroupOrder = function () {
-            console.log($scope.order);
-            $http.post('/api/v1/gorder', $scope.order).success(function (data) {
+            console.log($scope.gorder);
+            $http.post('/api/v1/gorder', $scope.gorder).success(function (data) {
                 $location.path('/gorder/list');
             }).error(function (data, status) {
                 console.log('Error ' + data)
