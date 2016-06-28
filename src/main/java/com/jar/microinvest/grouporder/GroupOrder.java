@@ -6,6 +6,8 @@ import org.bson.types.ObjectId;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import java.text.NumberFormat;
+
 /**
  * Created by shekhargulati on 09/06/14.
  */
@@ -34,7 +36,10 @@ public class GroupOrder {
     public BigDecimal getBigDecimalVersion(String bdString){
         if(bdString!=null){
             try {
-                BigDecimal tmp =  new BigDecimal(bdString);
+                NumberFormat format = NumberFormat.getCurrencyInstance();
+                Number number = format.parse(bdString);
+
+                BigDecimal tmp =  new BigDecimal(number.toString());
                 return tmp;
             } catch (Exception e){
                 e.printStackTrace();
