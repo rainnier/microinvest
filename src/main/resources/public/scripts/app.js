@@ -150,6 +150,27 @@
         
     });
     
+    app.controller('GroupOrderCreateCtrl', function ($scope, $http, $location, $filter) {
+        $scope.gorder = {
+            done: false,
+            type: 'buy',
+            stock: 'MEG',
+            price: '4.53',
+            cash: '77.00',
+            quantity: '',
+            amountInBucket: ''
+        };
+        
+        $scope.createGroupOrder = function () {
+            console.log($scope.gorder);
+            $http.post('/api/v1/gorder', $scope.gorder).success(function (data) {
+                $location.path('/gorder/list');
+            }).error(function (data, status) {
+                console.log('Error ' + data)
+            })
+        }
+    });
+    
     app.controller('GroupOrderListCtrl', function ($scope, $http) {
         $http.get('/api/v1/gorder').success(function (data) {
             $scope.gorders = data;
