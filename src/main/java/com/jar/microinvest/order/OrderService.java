@@ -42,20 +42,20 @@ public class OrderService {
         Order order = new Gson().fromJson(body, Order.class);
         System.out.println("createOrUpdateGroupOrder");
         
-        gorderCollection.update(
-           { stock: order.getStock(), type: order.getType(), done: false},
-           { $push:
-               {
-                 stock: order.getStock(),
-                 type: order.getType(),
-                 done: false,
-                 stockPrice: order.getPrice().toPlainString(),
-                 amountInBucket: order.getTotal().toPlainString()
-               }
-           },
-           { upsert: true }
-        )
-        
+        BasicDBObject newDocument = new BasicDBObject();
+    	newDocument.append("$set", new BasicDBObject().append("stock", order.getStock()))
+    	    .append("$set", new BasicDBObject().append("type", order.getType()))
+    	    .append("$set", new BasicDBObject().append("stockPrice", order.getPrice().toPlainString()))
+    	    //.append("$inc", new BasicDBObject().append("amountInBucket", order.getTotal().toPlainString()))
+    	    .append("$set", new BasicDBObject().append("done", false));
+    	
+    	BasicDBObject searchQuery = new BasicDBObject()
+        	.append("stock", order.getStock())
+        	.append("type", order.getType())
+        	.append("done", false);
+    
+    	collection.update(searchQuery, newDocument);
+	
         System.out.println("createNewOrder");
         System.out.println(body);
         
@@ -66,7 +66,6 @@ public class OrderService {
             .append("total", order.getTotal().toPlainString())
             .append("done", order.isDone()).append("createdOn", new Date()));
             
-        collection.update(new BasicDBObject("_id", new ObjectId(groupOrderId)), new BasicDBObject("$set", new BasicDBObject("done", groupOrder.isDone())));
     }
 
     public Order find(String id) {
