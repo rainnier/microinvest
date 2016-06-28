@@ -48,6 +48,11 @@
                 templateUrl:  'views/grouporder/list.html',
                 controller: 'GroupOrderListCtrl'
             })
+            .state('groupordercreate', {
+                url: '/gorder/create',
+                templateUrl:  'views/grouporder/create.html',
+                controller: 'GroupOrderCreateCtrl'
+            })
             .state('traderconsole', {
                 url: '/trader/view',
                 templateUrl:  'views/trader/view.html',
