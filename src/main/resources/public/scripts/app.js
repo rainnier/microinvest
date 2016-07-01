@@ -66,7 +66,10 @@
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage, $timeout) {
+    function run($rootScope, $http, $location, $localStorage, $httpBackend, $timeout) {
+        
+        $httpBackend.whenGET(/^\w+.*/).passThrough();
+        
         
         /*$httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
