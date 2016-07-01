@@ -66,9 +66,9 @@
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage, $httpBackend, $timeout) {
+    function run($rootScope, $http, $location, $localStorage, $timeout) {
         
-        $httpBackend.whenGET(/\.html$/).passThrough();
+        /*$httpBackend.whenGET(/\.html$/).passThrough();
         $httpBackend.whenGET('/api/v1/orderz').passThrough();
         $httpBackend.whenGET('/api/v1/trader').passThrough();
         $httpBackend.whenGET('/api/v1/orderzSummary').passThrough();
@@ -76,7 +76,7 @@
         $httpBackend.whenPUT(/\/api\/v1\/orderz\/(.+)/).passThrough();
         $httpBackend.whenGET('/api/v1/gorder').passThrough();
         $httpBackend.whenPOST('/api/v1/gorder').passThrough();
-        $httpBackend.whenPOST('/api/v1/trader').passThrough();
+        $httpBackend.whenPOST('/api/v1/trader').passThrough();*/
 
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
