@@ -66,9 +66,7 @@
             });
     }
 
-    function run($rootScope, $http, $location, $localStorage, $httpBackend, $timeout) {
-        
-        $httpBackend.whenGET(/^\w+.*/).passThrough();
+    function run($rootScope, $http, $location, $localStorage, $timeout) {
         
         
         /*$httpBackend.whenGET(/\.html$/).passThrough();
