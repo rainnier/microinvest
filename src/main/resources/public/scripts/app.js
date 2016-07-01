@@ -68,17 +68,6 @@
 
     function run($rootScope, $http, $location, $localStorage, $timeout) {
         
-        
-        /*$httpBackend.whenGET(/\.html$/).passThrough();
-        $httpBackend.whenGET('/api/v1/orderz').passThrough();
-        $httpBackend.whenGET('/api/v1/trader').passThrough();
-        $httpBackend.whenGET('/api/v1/orderzSummary').passThrough();
-        $httpBackend.whenPOST('/api/v1/orderz').passThrough();
-        $httpBackend.whenPUT(/\/api\/v1\/orderz\/(.+)/).passThrough();
-        $httpBackend.whenGET('/api/v1/gorder').passThrough();
-        $httpBackend.whenPOST('/api/v1/gorder').passThrough();
-        $httpBackend.whenPOST('/api/v1/trader').passThrough();*/
-
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
