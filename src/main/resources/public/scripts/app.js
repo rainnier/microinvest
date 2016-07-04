@@ -2,7 +2,7 @@
     'use strict';
 
     var app = angular
-        .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E',
+        .module('app', ['ui.router', 'ngMessages', 'ngStorage',
           'mobile-angular-ui',
   
           // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'
