@@ -22,15 +22,16 @@
                     // login successful if there's a token in the response
                     if (response.token) {
                         
-                        alert("entering...");
+                        alert(response.token);
+                        alert(supersecret.secret);
                         
-                        var isValid = KJUR.jws.JWS.verify(response.token, supersecret.secret, ["HS256"]);
+                        /*var isValid = KJUR.jws.JWS.verify(response.token, supersecret.secret, ["HS256"]);
                         
                         alert("isValid: " + isValid);
                         
                         var isValid2 = KJUR.jws.JWS.verify(response.token, "supersecret.secret", ["HS256"]);
                         
-                        alert("isValid2: " + isValid2);
+                        alert("isValid2: " + isValid2);*/
                         
                         // store username and token in local storage to keep user logged in between page refreshes
                         $localStorage.currentUser = { username: username, token: response.token };
