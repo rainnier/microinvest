@@ -4,7 +4,8 @@
     angular
         .module('app')
         .constant("supersecret", {
-            "secret": "SINIGANGNAMANOKNAMAYBABOYAT#12PAMPALASANAPINAKULUANNANG5ORASHANGGANGSAMAABOTANGNINANAISNALAMBOT"
+            "secret": "aaa"
+            /*"secret": "SINIGANGNAMANOKNAMAYBABOYAT#12PAMPALASANAPINAKULUANNANG5ORASHANGGANGSAMAABOTANGNINANAISNALAMBOT"*/
         })
         .factory('AuthenticationService', Service);
 
@@ -23,9 +24,9 @@
                     if (response.token) {
                         
                         alert("entering...");
-                        /*alert(supersecret.secret);*/
+                        alert(supersecret.secret);
                         
-                        var isValid = KJUR.jws.JWS.verify(response.token, supersecret.secret, ["HS256"]);
+                        var isValid = KJUR.jws.JWS.verify(response.token, "616161", ["HS256"]);
                         
                         alert("isValid: " + isValid);
                         
