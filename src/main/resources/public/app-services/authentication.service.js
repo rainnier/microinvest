@@ -25,11 +25,11 @@
                         alert("entering...");
                         /*alert(supersecret.secret);*/
                         
-                        var isValid = KJUR.jws.JWS.verify(response.token, {utf8: supersecret.secret}, ["HS256"]);
+                        var isValid = KJUR.jws.JWS.verify(response.token, supersecret.secret, ["HS256"]);
                         
                         alert("isValid: " + isValid);
                         
-                        var isValid2 = KJUR.jws.JWS.verify(response.token, {utf8: "supersecret.secret"}, ["HS256"]);
+                        var isValid2 = KJUR.jws.JWS.verify(response.token, "supersecret.secret", ["HS256"]);
                         
                         alert("isValid2: " + isValid2);
                         
