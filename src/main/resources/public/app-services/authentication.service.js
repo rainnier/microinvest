@@ -25,6 +25,7 @@
                         
                         alert("entering...");
                         alert(supersecret.secret);
+                        alert(response.token);
                         
                         var isValid = KJUR.jws.JWS.verify(response.token, "616161", ["HS256"]);
                         
