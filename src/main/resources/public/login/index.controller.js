@@ -23,7 +23,7 @@
                 if (result === true) {
                     $location.path('/');
                 } else {
-                    vm.error = 'Username or password is incorrect | Invalid transaction';
+                    vm.error = 'Username or password is incorrect (Invalid transaction)';
                     vm.loading = false;
                 }
             });
