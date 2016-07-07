@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .constant("supersecret", {
+        /*.constant("supersecret", {
             "secret": "SINIGANGNAMANOKNAMAYBABOYAT#12PAMPALASANAPINAKULUANNANG5ORASHANGGANGSAMAABOTANGNINANAISNALAMBOT"
-        })
+        })*/
         .factory('AuthenticationService', Service);
 
     function Service($http, $localStorage) {
