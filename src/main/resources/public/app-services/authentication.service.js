@@ -8,7 +8,7 @@
         })
         .factory('AuthenticationService', Service);
 
-    function Service($http, $localStorage) {
+    function Service($http, $localStorage, supersecret) {
         var service = {};
 
         service.Login = Login;
@@ -22,7 +22,7 @@
                     // login successful if there's a token in the response
                     if (response.token) {
                         
-                        alert(response.token);
+                        alert(supersecret);
                         // store username and token in local storage to keep user logged in between page refreshes
                         $localStorage.currentUser = { username: username, token: response.token };
 
