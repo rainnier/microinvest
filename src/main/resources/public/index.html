@@ -46,6 +46,8 @@
             ui-track-as-search-param='true'
             class="sidebar sidebar-left"></div>
             
+    <div ng-include="'sidebarRight.html'" class="sidebar sidebar-right ng-scope"></div>
+            
     <div class="app" 
          ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
          ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>

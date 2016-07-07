@@ -22,26 +22,21 @@
                     // login successful if there's a token in the response
                     if (response.token) {
                         
-                        alert("entering...");
-                        alert(supersecret.secret);
-                        alert(response.token);
+                        var isValid = KJUR.jws.JWS.verify(response.token, {utf8: supersecret.secret}, ["HS256"]);
                         
-                        var isValid = KJUR.jws.JWS.verify(response.token, "616161", ["HS256"]);
+                        if(isValid) {
                         
-                        alert("isValid: " + isValid);
-                        
-                        var isValid2 = KJUR.jws.JWS.verify(response.token, {utf8: supersecret.secret}, ["HS256"]);
-                        
-                        alert("isValid2: " + isValid2);
-                        
-                        // store username and token in local storage to keep user logged in between page refreshes
-                        $localStorage.currentUser = { username: username, token: response.token };
-
-                        // add jwt token to auth header for all requests made by the $http service
-                        $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
-
-                        // execute callback with true to indicate successful login
-                        callback(true);
+                            // store username and token in local storage to keep user logged in between page refreshes
+                            $localStorage.currentUser = { username: username, token: response.token };
+    
+                            // add jwt token to auth header for all requests made by the $http service
+                            $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
+    
+                            // execute callback with true to indicate successful login
+                            callback(true);
+                        } else {
+                            callback(false);
+                        }
                     } else {
                         // execute callback with false to indicate failed login
                         callback(false);
