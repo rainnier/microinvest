@@ -6,7 +6,7 @@
         .constant("supersecret", {
             "secret": "SINIGANGNAMANOKNAMAYBABOYAT#12PAMPALASANAPINAKULUANNANG5ORASHANGGANGSAMAABOTANGNINANAISNALAMBOT"
         })
-        .factory('AuthenticationService', Service);
+        .factory('AuthenticationService', ['supersecret', Service]);
 
     function Service($http, $localStorage) {
         var service = {};
@@ -21,6 +21,8 @@
                 .success(function (response) {
                     // login successful if there's a token in the response
                     if (response.token) {
+                        
+                        
                         // store username and token in local storage to keep user logged in between page refreshes
                         $localStorage.currentUser = { username: username, token: response.token };
 
