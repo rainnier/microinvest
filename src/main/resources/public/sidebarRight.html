@@ -2,7 +2,23 @@
   <h1 class="scrollable-header app-name">User <small>1.0</small></h1>  
   <div class="scrollable-content">
     <div class="list-group" ui-turn-off='uiSidebarRight'>
-      <a class="list-group-item" href="#/login">Logout <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item media ng-scope" href="#/login">
+          <div class="pull-left">
+              <i class="fa fa-user chat-user-avatar"></i>
+          </div>
+          <div class="media-body">
+              <h5 class="media-heading ng-binding">Username</h5>
+              <small>
+                <span class="ng-scope">
+                    <span class="label label-success">LOG OUT</span>
+                </span>
+              </small>
+          </div>
+      </a>
     </div>
+    
+        
+              
+          
   </div>
 </div>
