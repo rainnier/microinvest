@@ -12,11 +12,12 @@
           // final pourpose to integrate gestures into default ui interactions like 
           // opening sidebars, turning switches on/off ..
           'mobile-angular-ui.gestures',
-          'ngMaterial'])
+          'ngMaterial',
+          'satellizer'])
         .config(config)
         .run(run);
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $authProvider) {
         // default route
         $urlRouterProvider.otherwise("/");
 
