@@ -65,6 +65,11 @@
                 templateUrl:  'views/order/fill.html',
                 controller: 'OrderFillCtrl'
             });
+            
+        $authProvider.google({
+          clientId: '209006833609-dq74fhrur8nkg56k088fcgoapenuo85i.apps.googleusercontent.com'
+        });
+    
     }
 
     function run($rootScope, $http, $location, $localStorage, $timeout) {
