@@ -13,7 +13,8 @@
           // opening sidebars, turning switches on/off ..
           'mobile-angular-ui.gestures',
           'ngMaterial',
-          'satellizer'])
+          'satellizer',
+          'toastr'])
         .config(config)
         .run(run);
 
