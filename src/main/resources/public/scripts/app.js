@@ -70,6 +70,21 @@
         $authProvider.google({
           clientId: '209006833609-dq74fhrur8nkg56k088fcgoapenuo85i.apps.googleusercontent.com'
         });
+        
+        // Google
+        $authProvider.google({
+          url: 'http://userapi-rainnier.rhcloud.com/auth/google',
+          authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+          redirectUri: window.location.origin,
+          requiredUrlParams: ['scope'],
+          optionalUrlParams: ['display'],
+          scope: ['profile', 'email'],
+          scopePrefix: 'openid',
+          scopeDelimiter: ' ',
+          display: 'popup',
+          type: '2.0',
+          popupOptions: { width: 452, height: 633 }
+        });
     
     }
 
