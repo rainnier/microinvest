@@ -146,6 +146,10 @@
     
     app.controller('OrderListCtrl', function ($scope, $http, $localStorage) {
         
+        $scope.user = {
+            name: $localStorage.currentUser.username
+        };
+        
         $http.get('/api/v1/orderz').success(function (data) {
             $scope.trans = data;
         }).error(function (data, status) {
