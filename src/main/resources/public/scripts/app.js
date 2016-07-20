@@ -144,7 +144,7 @@
         }
     });
     
-    app.controller('OrderListCtrl', function ($scope, $http) {
+    app.controller('OrderListCtrl', function ($scope, $http, $localStorage) {
         
         $http.get('/api/v1/orderz').success(function (data) {
             $scope.trans = data;
