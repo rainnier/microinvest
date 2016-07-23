@@ -5,7 +5,7 @@
         .module('app')
         .factory('AuthenticationService', Service);
 
-    function Service($http, $localStorage, supersecret) {
+    function Service($http, $localStorage) {
         var service = {};
 
         service.Login = Login;
