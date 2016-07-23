@@ -68,7 +68,7 @@
             });
             
         $authProvider.google({
-          clientId: conf.googleClientId
+          clientId: '209006833609-dq74fhrur8nkg56k088fcgoapenuo85i.apps.googleusercontent.com'
         });
         
         // Google
