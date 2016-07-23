@@ -20,7 +20,7 @@ import static spark.SparkBase.staticFileLocation;
  * Created by shekhargulati on 09/06/14.
  */
 public class Bootstrap {
-    private static final String IP_ADDRESS = System.getenv("OPENSHIFT_DIY_IP") != null ? System.getenv("OPENSHIFT_DIY_IP") : "localhost";
+    private static final String IP_ADDRESS = System.getenv("OPENSHIFT_DIY_IP") != null ? System.getenv("OPENSHIFT_DIY_IP") : "0.0.0.0";
     private static final int PORT = System.getenv("OPENSHIFT_DIY_PORT") != null ? Integer.parseInt(System.getenv("OPENSHIFT_DIY_PORT")) : 9090;
 
     public static void main(String[] args) throws Exception {
