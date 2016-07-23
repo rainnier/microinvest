@@ -17,6 +17,8 @@
           'toastr'])
         .config(config)
         .run(run);
+        
+    var conf = require('../../../config/config'); // get our config file
 
     function config($stateProvider, $urlRouterProvider, $authProvider) {
         // default route
@@ -68,7 +70,7 @@
             });
             
         $authProvider.google({
-          clientId: '209006833609-dq74fhrur8nkg56k088fcgoapenuo85i.apps.googleusercontent.com'
+          clientId: conf.googleClientId
         });
         
         // Google
@@ -144,7 +146,11 @@
         }
     });
     
-    app.controller('OrderListCtrl', function ($scope, $http) {
+    app.controller('OrderListCtrl', function ($scope, $http, $localStorage) {
+        
+        $scope.user = {
+            name: $localStorage.currentUser.username
+        };
         
         $http.get('/api/v1/orderz').success(function (data) {
             $scope.trans = data;

@@ -3,11 +3,10 @@
 
     angular
         .module('app')
-        .constant("supersecret", {
-            "secret": "SINIGANGNAMANOKNAMAYBABOYAT#12PAMPALASANAPINAKULUANNANG5ORASHANGGANGSAMAABOTANGNINANAISNALAMBOT"
-        })
         .factory('AuthenticationService', Service);
 
+    var config = require('../../../config/config'); // get our config file
+    
     function Service($http, $localStorage, supersecret) {
         var service = {};
 
@@ -22,7 +21,7 @@
                     // login successful if there's a token in the response
                     if (response.token) {
                         
-                        var isValid = KJUR.jws.JWS.verify(response.token, {utf8: supersecret.secret}, ["HS256"]);
+                        var isValid = KJUR.jws.JWS.verify(response.token, {utf8: config.secret}, ["HS256"]);
                         
                         if(isValid) {
                         
