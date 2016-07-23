@@ -5,8 +5,6 @@
         .module('app')
         .factory('AuthenticationService', Service);
 
-    var config = require('../../../config/config'); // get our config file
-    
     function Service($http, $localStorage, supersecret) {
         var service = {};
 
