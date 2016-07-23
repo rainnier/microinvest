@@ -18,8 +18,6 @@
         .config(config)
         .run(run);
         
-    var conf = require('../../../config/config'); // get our config file
-
     function config($stateProvider, $urlRouterProvider, $authProvider) {
         // default route
         $urlRouterProvider.otherwise("/");
