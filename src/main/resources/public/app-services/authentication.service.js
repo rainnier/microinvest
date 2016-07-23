@@ -19,7 +19,7 @@
                     // login successful if there's a token in the response
                     if (response.token) {
                         
-                        var isValid = KJUR.jws.JWS.verify(response.token, {utf8: config.secret}, ["HS256"]);
+                        var isValid = KJUR.jws.JWS.verify(response.token, {utf8: 'SINIGANGNAMANOKNAMAYBABOYAT#12PAMPALASANAPINAKULUANNANG5ORASHANGGANGSAMAABOTANGNINANAISNALAMBOT'}, ["HS256"]);
                         
                         if(isValid) {
                         
